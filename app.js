@@ -7,7 +7,7 @@ const express = require('express');
 const parser = require('body-parser');
 
 /**     This app's custom modules              **/
-
+const rootDir = require('./utils/path');
 
 const app = express();
 
