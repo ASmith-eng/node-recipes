@@ -12,6 +12,7 @@ router.get('/add-recipe', (req, res, next) => {
 
 router.post('/add-recipe', (req, res, nex) => {
     console.log(req.body);
-})
+    res.redirect('/admin/add-recipe');
+});
 
 module.exports = router;
