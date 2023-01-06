@@ -10,4 +10,8 @@ router.get('/add-recipe', (req, res, next) => {
     res.sendFile(path.join(rootDir, 'views', 'add-recipe.html'));
 });
 
+router.post('/add-recipe', (req, res, nex) => {
+    console.log(req.body);
+})
+
 module.exports = router;
