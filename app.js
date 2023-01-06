@@ -12,10 +12,14 @@ const rootDir = require('./utils/path');
 const app = express();
 
 const adminRoutes = require('./routes/admin');
+const userRoutes = require('./routes/recipes');
 
 app.use(parser.urlencoded({extended: false}));
 
+/** Incoming requests handled by imported adminRoutes if prefaced with /admin
+ * otherwise we will look for a criteria match in userRoutes **/
 app.use('/admin', adminRoutes);
+app.use(userRoutes);
 
 /** If the request has not been picked up and a response sent from middleware in 
  * routes above we should send generic 404 page **/
