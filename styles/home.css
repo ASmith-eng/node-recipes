@@ -1,0 +1,54 @@
+
+/**     Generic elements    **/
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #FFF1BD;
+}
+
+header {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/**     Logo                **/
+.logo img {
+    padding: 10px 20px;
+    width: 50px;
+}
+
+/**     Navigation bar      **/
+nav {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+nav ul {
+    margin:0;
+    padding: 0;
+    display: inherit;
+    gap: 4px;
+    list-style: none;
+}
+
+.navlinks li {
+    margin: 0;
+    display: inherit;
+}
+
+.navlinks a {
+    margin: 0;
+    padding: 14px 20px;
+    align-self: center;
+    color: black;
+}
+
+.navlinks a:hover {
+    background-color: #A3DA8D;
+}
