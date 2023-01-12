@@ -1,0 +1,79 @@
+
+/**     Generic elements    **/
+body {
+    margin: 0;
+    font-family: Futura, sans-serif;
+    background-color: #FFF1BD;
+}
+
+header {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/**     Logo                **/
+.logo img {
+    padding: 10px 20px;
+    width: 50px;
+}
+
+/**     Navigation bar      **/
+nav {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+nav ul {
+    margin:0;
+    padding: 0;
+    display: inherit;
+    gap: 4px;
+    list-style: none;
+}
+
+.navlinks li {
+    margin: 0;
+    display: inherit;
+}
+
+.navlinks a {
+    margin: 0;
+    padding: 11px 18px;
+    align-self: center;
+    color: black;
+    border-bottom: 2px solid #FFF1BD;
+    border-radius: 2px 2px 0 0;
+}
+
+.navlinks a:hover {
+    background-color: #A3DA8D;
+    border-bottom-style: solid;
+    border-color: black;
+}
+
+/**     Large card section  **/
+.large-card {
+    margin: 0;
+    padding: 20px 20px;
+    width: 60%;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 2px;
+    box-shadow: -11px 14px #F3C892;
+}
+
+.large-card h1 {
+    margin: 6px 14px;
+    padding: 0;
+}
+
+.large-card p {
+    margin: 6px 14px;
+}
+
