@@ -15,6 +15,9 @@ const adminRoutes = require('./routes/admin');
 const userRoutes = require('./routes/recipes');
 
 app.use(parser.urlencoded({extended: false}));
+/** Make directory 'public' statically accessible (read only access for anyone
+ *  with direct filepath inside this folder) **/
+app.use(express.static(path.join(rootDir, 'public')));
 
 /** Incoming requests handled by imported adminRoutes if prefaced with /admin
  * otherwise we will look for a criteria match in userRoutes **/
