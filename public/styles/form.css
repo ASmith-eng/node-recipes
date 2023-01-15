@@ -1,0 +1,70 @@
+
+.recipe-intro {
+    margin: 0;
+    padding: 40px 0;
+    height: 400px;
+    color: bisque;
+    background-color: rgb(22, 39, 10);
+}
+
+.recipe-intro h1 {
+    margin: 40px 5% 0 5%;
+}
+
+.name-description {
+    width: 70%;
+    margin: 40px auto;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.step-name {
+    width: 35%;
+}
+
+.step-description {
+    width: 60%;
+}
+
+form label {
+    margin: 4px 0;
+    font-size: 1.1rem;
+    display: block;
+}
+
+form button {
+    margin: 20px 0;
+    padding: 4px 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgb(22, 39, 10);
+    background-color: bisque;
+    border: 1px solid bisque;
+    border-radius: 1px;
+}
+
+form button:hover {
+    box-shadow: -3px -4px rgb(173, 130, 2);
+}
+.name-description input,
+.name-description textarea {
+    width: 80%;
+    padding: 10px;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    border: 1px solid bisque;
+    border-radius: 2px;
+}
+
+#description-input {
+    height: 100px;
+    resize: none;
+}
+
+#dish-input,
+#description-input {
+    font-family: inherit;
+}
