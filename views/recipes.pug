@@ -4,16 +4,16 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Recipes-Home
         link(rel="stylesheet", href="/styles/main.css")
         link(rel="stylesheet", href="/styles/home.css")
-        title Recipes
     body 
         header 
             nav 
                 div.logo
                     img(src="https://img.icons8.com/material-outlined/96/000000/rice-bowl.png")
                 ul.navlinks
-                    li 
+                    li
                         a(href="/") Home 
                     li 
                         a(href="admin/add-recipe") Add Recipe 
@@ -21,4 +21,16 @@ html(lang="en")
             section.about
                 div.large-card
                     h1 Recipes 
-                    p This is a paragraph with an explanation of the recipes site! Scroll down to browse our full list of exciting menu possibilities. Who knows, mabe these will be organised by category in the future?
+                    p This is a paragraph with an explanation of the recipes site! Scroll down to browse our full list of exciting menu possibilities. Who knows, maybe these will be organised by category in the future?
+            section.recipe-directory 
+                article.recipe-card
+                    .content
+                        h2 Pepperoni Pizza 
+                        p A description of a pepperoni pizza!
+                    img.dish-img(src="/images/image.webp")
+                article.recipe-card
+                    .content 
+                        h2 Eton Mess 
+                        p We're not talking about Boris Johnson
+                    img.dish-img(src="/images/image.webp")
+
