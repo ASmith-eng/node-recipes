@@ -6,13 +6,16 @@ const rootDir = require('../utils/path');
 
 const router = express.Router();
 
+const recipes = [];
+
 router.get('/add-recipe', (req, res, next) => {
     res.sendFile(path.join(rootDir, 'views', 'add-recipe.html'));
 });
 
 router.post('/add-recipe', (req, res, nex) => {
-    console.log(req.body);
+    recipes.push({name: req.body.name, description: req.body.description})
     res.redirect('/');
 });
 
-module.exports = router;
+exports.routes = router;
+exports.recipes = recipes;

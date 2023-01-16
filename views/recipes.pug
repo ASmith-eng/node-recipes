@@ -33,4 +33,10 @@ html(lang="en")
                         h2 Eton Mess 
                         p We're not talking about Boris Johnson
                     img.dish-img(src="/images/image.webp")
+                each recipe in dishes
+                    article.recipe-card
+                        .content
+                            h2 #{recipe.name} 
+                            p #{recipe.description}
+                        img.dish-img(src="/images/image.webp")
 
