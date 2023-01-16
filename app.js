@@ -11,8 +11,13 @@ const rootDir = require('./utils/path');
 
 const app = express();
 
+/** Declare templating engine (pug) **/
+app.set('view engine', 'pug');
+app.set('views', 'views');
+
 const adminRoutes = require('./routes/admin');
 const userRoutes = require('./routes/recipes');
+const { ppid } = require('process');
 
 app.use(parser.urlencoded({extended: false}));
 /** Make directory 'public' statically accessible (read only access for anyone
