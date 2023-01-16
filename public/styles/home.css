@@ -19,7 +19,9 @@
     align-items: center;
     justify-content: center;
     gap: 3rem 4rem;
-    background-color: rgb(102, 205, 143);
+    background-color: #A3DA8D;
+    opacity: 1;
+    background: repeating-linear-gradient( -45deg, rgb(89, 131, 107), rgba(89, 131, 107, 1) 4px, #A3DA8D 4px, #A3DA8D 20px );
 }
 
 .recipe-card {
@@ -30,11 +32,18 @@
     background-color: white;
     border: 2px solid black;
     border-radius: 2px;
-    transition-duration: 0.3s;
+    box-shadow: -3px 2px black;
+    transition-duration: 0.2s;
 }
 
 .recipe-card:hover {
-    box-shadow: -5px 4px black;
+    box-shadow: -6px 4px black;
+    cursor: pointer;
+}
+
+.recipe-card:active {
+    translate: -4px 3px;
+    box-shadow: none;
 }
 
 .content {
