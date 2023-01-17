@@ -22,21 +22,26 @@ html(lang="en")
                 div.large-card
                     h1 Recipes 
                     p This is a paragraph with an explanation of the recipes site! Scroll down to browse our full list of exciting menu possibilities. Who knows, maybe these will be organised by category in the future?
-            section.recipe-directory 
-                article.recipe-card
-                    .content
-                        h2 Pepperoni Pizza 
-                        p A description of a pepperoni pizza!
-                    img.dish-img(src="/images/image.webp")
-                article.recipe-card
-                    .content 
-                        h2 Eton Mess 
-                        p We're not talking about Boris Johnson
-                    img.dish-img(src="/images/image.webp")
-                each recipe in dishes
+            if dishes.length>0
+                section.recipe-directory 
                     article.recipe-card
                         .content
-                            h2 #{recipe.name} 
-                            p #{recipe.description}
+                            h2 Pepperoni Pizza 
+                            p A description of a pepperoni pizza!
                         img.dish-img(src="/images/image.webp")
+                    article.recipe-card
+                        .content 
+                            h2 Eton Mess 
+                            p We're not talking about Boris Johnson
+                        img.dish-img(src="/images/image.webp")
+                    each recipe in dishes
+                        article.recipe-card
+                            .content
+                                h2 #{recipe.name} 
+                                p #{recipe.description}
+                            img.dish-img(src="/images/image.webp")
+            else 
+                section.no-recipes
+                    .large-card 
+                        h1 No Recipes Found!
 

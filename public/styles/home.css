@@ -9,7 +9,8 @@
 }
 
 /**     Recipe card         **/
-.recipe-directory {
+.recipe-directory,
+.no-recipes {
     margin: 100px 0;
     padding: 40px 10%;
     display: -webkit-box;
@@ -18,6 +19,10 @@
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
+    border-top: 2px solid black;
+}
+
+.recipe-directory {
     gap: 3rem 4rem;
     background-color: #A3DA8D;
     opacity: 1;
