@@ -78,3 +78,15 @@ nav ul {
     margin: 6px 14px;
 }
 
+/** Homepage redirect button    **/
+.return-redirect {
+    margin: 60px 20%;
+}
+
+.return-redirect a {
+    padding: 11px 18px;
+    color: black;
+    background-color: #A3DA8D;
+    border: 2px solid black;
+    border-radius: 2px;
+}
