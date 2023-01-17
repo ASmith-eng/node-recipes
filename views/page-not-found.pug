@@ -1,0 +1,18 @@
+extends layouts/main-layout.pug
+
+block title 
+    title Page Not Found
+
+block styles 
+    link(rel="stylesheet", href="/styles/main.css")
+
+block additional-nav-links 
+    
+
+block content 
+    body 
+        main
+            h1 Uh oh, page not found!
+            p 404 Error 
+            .return-redirect 
+                a(href="/") Return to main site

@@ -31,7 +31,8 @@ app.use(userRoutes);
 /** If the request has not been picked up and a response sent from middleware in 
  * routes above we should send generic 404 page **/
 app.use((req, res, next) => {
-    res.status(404).sendFile(path.join(rootDir, 'views', 'page-not-found.html'));
+    //res.status(404).sendFile(path.join(rootDir, 'views', 'page-not-found.html'));
+    res.status(404).render('page-not-found')
 });
 
 app.listen(3000);
