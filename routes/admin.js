@@ -10,7 +10,7 @@ const recipes = [];
 
 router.get('/add-recipe', (req, res, next) => {
     //res.sendFile(path.join(rootDir, 'views', 'add-recipe.html'));
-    res.render('add-product');
+    res.render('add-recipe');
 });
 
 router.post('/add-recipe', (req, res, nex) => {

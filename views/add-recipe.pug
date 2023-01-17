@@ -1,0 +1,26 @@
+extends layouts/main-layout.pug
+
+block title
+    title Recipes-Add Recipe
+
+block styles 
+    link(rel="stylesheet", href="/styles/main.css")
+    link(rel="stylesheet", href="/styles/form.css")
+
+block additional-nav-links 
+    li 
+        a(href="admin/add-recipe") Add Recipe
+
+block content
+    main
+        section.recipe-intro 
+            h1 A new dish! Now, what is it?
+            form.name-description(action="/admin/add-recipe", method="POST")
+                .step-name
+                    label(for="name") Dish Name
+                    input#dish-input(type="text", name="name", placeholder="Give me a name!!")
+                .step-description 
+                    label(for="description") Description
+                    textarea#description-input(name="description", placeholder="Start typing to add a description")
+                p Click next to save and start adding ingredients 
+                button(type="submit") Next
