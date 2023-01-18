@@ -19,8 +19,9 @@ exports.postAddRecipe = (req, res, nex) => {
 
 /** User       **/
 exports.getHome = (req, res, next) => {
-    const recipeList = Recipe.fetchAll();
-    res.render('recipes', {
-        dishes: recipeList
+    Recipe.fetchAll((recipeList) => {
+        res.render('recipes', {
+            dishes: recipeList
+        });
     });
 };
