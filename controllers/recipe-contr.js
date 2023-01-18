@@ -1,20 +1,25 @@
+const Recipe = require('../models/recipe');
+
 /** Admin       **/
-const recipeList = [];
+//const recipeList = [];
 
 exports.getAddRecipe = (req, res, next) => {
     res.render('add-recipe');
 };
 
 exports.postAddRecipe = (req, res, nex) => {
-    recipeList.push({
+    /**recipeList.push({
         name: req.body.name,
         description: req.body.description
-    });
+    });**/
+    const recipe = new Recipe(req.body.name, req.body.description);
+    recipe.save();
     res.redirect('/');
 };
 
-/** Home        **/
+/** User       **/
 exports.getHome = (req, res, next) => {
+    const recipeList = Recipe.fetchAll();
     res.render('recipes', {
         dishes: recipeList
     });
