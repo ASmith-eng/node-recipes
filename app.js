@@ -25,7 +25,7 @@ app.use(express.static(path.join(rootDir, 'public')));
 
 /** Incoming requests handled by imported adminRoutes if prefaced with /admin
  * otherwise we will look for a criteria match in userRoutes **/
-app.use('/admin', adminRoutes.routes);
+app.use('/admin', adminRoutes);
 app.use(userRoutes);
 
 /** If the request has not been picked up and a response sent from middleware in 
