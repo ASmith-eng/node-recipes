@@ -8,6 +8,7 @@ const parser = require('body-parser');
 
 /**     This app's custom modules              **/
 const rootDir = require('./utils/path');
+const errorController = require('./controllers/error-contr');
 
 const app = express();
 
@@ -30,9 +31,6 @@ app.use(userRoutes);
 
 /** If the request has not been picked up and a response sent from middleware in 
  * routes above we should send generic 404 page **/
-app.use((req, res, next) => {
-    //res.status(404).sendFile(path.join(rootDir, 'views', 'page-not-found.html'));
-    res.status(404).render('page-not-found')
-});
+app.use(errorController.getPageNotFound);
 
 app.listen(3000);
