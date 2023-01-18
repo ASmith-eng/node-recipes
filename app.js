@@ -17,7 +17,7 @@ app.set('view engine', 'pug');
 app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
-const userRoutes = require('./routes/recipes');
+const userRoutes = require('./routes/user');
 
 app.use(parser.urlencoded({extended: false}));
 /** Make directory 'public' statically accessible (read only access for anyone
