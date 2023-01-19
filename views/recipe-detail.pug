@@ -1,0 +1,11 @@
+extends main-layout.pug
+
+block title 
+    title Customise this 
+
+block styles
+    link(rel="stylesheet", href="/styles/main.css")
+
+block additional-nav-links 
+    li 
+        a(href="admin/add-recipe") Add Recipe

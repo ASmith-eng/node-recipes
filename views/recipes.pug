@@ -30,11 +30,12 @@ block content
                             p We're not talking about Boris Johnson
                         img.dish-img(src="/images/image.webp")
                     each recipe in dishes
-                        article.recipe-card
-                            .content
-                                h2 #{recipe.name} 
-                                p #{recipe.description}
-                            img.dish-img(src="/images/image.webp")
+                        a(href='/'+recipe.name)
+                            article.recipe-card
+                                .content
+                                    h2 #{recipe.name} 
+                                    p #{recipe.description}
+                                img.dish-img(src="/images/image.webp")
             else 
                 section.no-recipes
                     .large-card 

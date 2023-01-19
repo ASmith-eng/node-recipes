@@ -29,9 +29,17 @@
     background: repeating-linear-gradient( -45deg, rgb(89, 131, 107), rgba(89, 131, 107, 1) 4px, #A3DA8D 4px, #A3DA8D 20px );
 }
 
+.recipe-directory a {
+    margin: 0;
+    padding: 0;
+    color: inherit;
+}
+
 .recipe-card {
     margin: 0;
-    display: inherit;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
     justify-content: space-between;
     width: 400px;
     background-color: white;
