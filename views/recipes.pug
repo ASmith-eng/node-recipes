@@ -30,7 +30,7 @@ block content
                             p The picture next to this is not correct yet
                         img.dish-img(src="/images/image.webp")
                     each recipe in dishes
-                        a(href='/'+recipe.name)
+                        a(href='/recipes?dish='+recipe.name)
                             article.recipe-card
                                 .content
                                     h2 #{recipe.name} 

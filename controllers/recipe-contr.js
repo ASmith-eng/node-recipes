@@ -25,3 +25,17 @@ exports.getHome = (req, res, next) => {
         });
     });
 };
+
+exports.getRecipeDetail = (req, res, next) => {
+    const requestedDish = req.query.dish;
+    Recipe.fetchNames((recipeList) => {
+        if(recipeList.includes(requestedDish)) {
+            res.render('recipe-detail', {
+                dish: requestedDish
+            });
+        }
+        else {
+            res.status(404).render('page-not-found');
+        }
+    });
+};

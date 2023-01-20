@@ -36,4 +36,16 @@ module.exports = class Recipe {
             callback(JSON.parse(fileContent));
         });
     }
+
+    static fetchNames(callback) {
+        const recipeNameDir = path.join(rootDir, 'data', 'recipeNames.json');
+        fs.readFile(recipeNameDir, (err, fileContent) => {
+            if (err) {
+                callback([]);
+            }
+            const parsedObjArray = JSON.parse(fileContent);
+            let recipeNames = parsedObjArray.map(recipe => recipe.name);
+            callback(recipeNames);
+        });
+    }
 }
