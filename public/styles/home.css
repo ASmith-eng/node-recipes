@@ -45,7 +45,7 @@
     background-color: white;
     border: 2px solid black;
     border-radius: 2px;
-    box-shadow: -3px 2px black;
+    box-shadow: -2px 3px darkslategrey;
     transition-duration: 0.2s;
 }
 
@@ -61,7 +61,7 @@
 
 .content {
     padding: 4px;
-    min-height: 100px;
+    height: 100px;
     display: inline-block;
 }
 
@@ -69,10 +69,21 @@
 .recipe-card p {
     margin: 10px 14px;
     padding: 0;
+    overflow: hidden;
 }
 
-h2 {
+.recipe-card h2 {
     font-size: 1.2rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.recipe-card p {
+    max-height: 50px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
 }
 
 .dish-img {
