@@ -4,7 +4,7 @@ const Recipe = require('../models/recipe');
 //const recipeList = [];
 
 exports.getAddRecipe = (req, res, next) => {
-    res.render('add-recipe');
+    res.render('./admin/add-recipe');
 };
 
 exports.postAddRecipe = (req, res, nex) => {
