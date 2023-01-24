@@ -39,3 +39,7 @@ exports.getRecipeDetail = (req, res, next) => {
         }
     });
 };
+
+exports.getRecipeList = (req, res, next) => {
+    res.render('./recipe-list');
+};
