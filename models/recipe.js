@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const rootDir = require('../utils/path');
+const recipeNameDir = path.join(rootDir, 'data', 'recipeNames.json');
 
 
 module.exports = class Recipe {
@@ -11,7 +12,6 @@ module.exports = class Recipe {
     }
 
     save() {
-        const recipeNameDir = path.join(rootDir, 'data', 'recipeNames.json');
         fs.readFile(recipeNameDir, (err, fileContent) => {
             let recipeList = [];
             //If no error reading file, dump contents into recipeList
@@ -28,7 +28,6 @@ module.exports = class Recipe {
     }
 
     static fetchAll(callback) {
-        const recipeNameDir = path.join(rootDir, 'data', 'recipeNames.json');
         fs.readFile(recipeNameDir, (err, fileContent) => {
             if (err) {
                 callback([]);
@@ -38,14 +37,9 @@ module.exports = class Recipe {
     }
 
     static fetchNames(callback) {
-        const recipeNameDir = path.join(rootDir, 'data', 'recipeNames.json');
-        fs.readFile(recipeNameDir, (err, fileContent) => {
-            if (err) {
-                callback([]);
-            }
-            const parsedObjArray = JSON.parse(fileContent);
+        this.fetchAll((parsedObjArray) => {
             let recipeNames = parsedObjArray.map(recipe => recipe.name);
-            callback(recipeNames);
+            callback(recipeNames)
         });
     }
 }
