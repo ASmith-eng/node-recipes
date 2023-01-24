@@ -9,27 +9,43 @@
 }
 
 /**     Recipe card         **/
-.recipe-directory,
+.recipe-feature,
 .no-recipes {
     margin: 100px 0;
     padding: 40px 10%;
+    position: relative;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
-    border-top: 2px solid black;
+    border: 2px solid black;
 }
 
-.recipe-directory {
+.feature-label {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: -26px;
+    background-color: #FFF1BD;
+    border: 2px solid black;
+    border-radius: 12px;
+}
+
+.feature-label p {
+    margin: 0;
+    padding: 9px 18px;
+}
+
+.recipe-feature {
     gap: 3rem 4rem;
     background-color: #A3DA8D;
     opacity: 1;
     background: repeating-linear-gradient( -45deg, rgb(89, 131, 107), rgba(89, 131, 107, 1) 4px, #A3DA8D 4px, #A3DA8D 20px );
 }
 
-.recipe-directory a {
+.recipe-feature a {
     margin: 0;
     padding: 0;
     color: inherit;
@@ -45,7 +61,7 @@
     background-color: white;
     border: 2px solid black;
     border-radius: 2px;
-    box-shadow: -2px 3px darkslategrey;
+    box-shadow: -3px 3px darkslategrey;
     transition-duration: 0.2s;
 }
 
