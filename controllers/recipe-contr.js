@@ -17,6 +17,10 @@ exports.postAddRecipe = (req, res, nex) => {
     res.redirect('/');
 };
 
+exports.getEditRecipe = (req, res, next) => {
+    res.render('./admin/edit-recipe');
+};
+
 /** User       **/
 exports.getHome = (req, res, next) => {
     Recipe.fetchAll((recipeList) => {
