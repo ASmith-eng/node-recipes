@@ -12,7 +12,17 @@ exports.postAddRecipe = (req, res, nex) => {
 };
 
 exports.getEditRecipe = (req, res, next) => {
-    res.render('./admin/edit-recipe');
+    const requestedDish = req.query.dish;
+    Recipe.fetchNames((recipeNames) => {
+        if(recipeNames.includes(requestedDish)) {
+            res.render('./admin/edit-recipe', {
+                dish: requestedDish
+            });
+        }
+        else {
+            res.status(404).render('page-not-found');
+        }
+    });
 };
 
 /** User       **/
