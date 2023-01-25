@@ -5,3 +5,13 @@ block title
 
 block styles 
     link(rel="stylesheet", href="/styles/main.css")
+
+block content 
+    main 
+        section.list-container 
+            a(href='/recipes?dish='+recipe.name)
+                article.recipe-card
+                    .content
+                        h2 #{recipe.name} 
+                        p #{recipe.description}
+                    img.dish-img(src="/images/image.webp")
