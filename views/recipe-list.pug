@@ -9,9 +9,10 @@ block styles
 block content 
     main 
         section.list-container 
-            a(href='/recipes?dish='+recipe.name)
-                article.recipe-card
-                    .content
-                        h2 #{recipe.name} 
-                        p #{recipe.description}
-                    img.dish-img(src="/images/image.webp")
+            each recipe in dishes
+                a(href='/recipes?dish='+recipe.name)
+                    article.recipe-card
+                        .content
+                            h2 #{recipe.name} 
+                            p #{recipe.description}
+                        img.dish-img(src="/images/image.webp")

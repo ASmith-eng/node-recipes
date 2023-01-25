@@ -1,17 +1,11 @@
 const Recipe = require('../models/recipe');
 
-/** Admin       **/
-//const recipeList = [];
 
 exports.getAddRecipe = (req, res, next) => {
     res.render('./admin/add-recipe');
 };
 
 exports.postAddRecipe = (req, res, nex) => {
-    /**recipeList.push({
-        name: req.body.name,
-        description: req.body.description
-    });**/
     const recipe = new Recipe(req.body.name, req.body.description);
     recipe.save();
     res.redirect('/');
@@ -23,17 +17,17 @@ exports.getEditRecipe = (req, res, next) => {
 
 /** User       **/
 exports.getHome = (req, res, next) => {
-    Recipe.fetchAll((recipeList) => {
+    Recipe.fetchAll((allRecipes) => {
         res.render('recipes', {
-            dishes: recipeList
+            dishes: allRecipes
         });
     });
 };
 
 exports.getRecipeDetail = (req, res, next) => {
     const requestedDish = req.query.dish;
-    Recipe.fetchNames((recipeList) => {
-        if(recipeList.includes(requestedDish)) {
+    Recipe.fetchNames((recipeNames) => {
+        if(recipeNames.includes(requestedDish)) {
             res.render('recipe-detail', {
                 dish: requestedDish
             });
@@ -45,5 +39,9 @@ exports.getRecipeDetail = (req, res, next) => {
 };
 
 exports.getRecipeList = (req, res, next) => {
-    res.render('./recipe-list');
+    Recipe.fetchAll((allRecipes) => {
+        res.render('./recipe-list', {
+            dishes: allRecipes
+        });
+    });
 };
