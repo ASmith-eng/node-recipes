@@ -14,7 +14,7 @@
 .edit-form {
     margin: 16px 0;
     padding: 40px 0;
-    background-color: #A3DA8D;
+    background-color: #729863;
     border-top: 2px solid black;
 }
 
@@ -49,12 +49,12 @@ form button {
     font-weight: 600;
     color: rgb(22, 39, 10);
     background-color: bisque;
-    border: 1px solid bisque;
+    border: 2px solid black;
     border-radius: 1px;
 }
 
 form button:hover {
-    box-shadow: -3px -4px rgb(173, 130, 2);
+    box-shadow: -3px 4px black;
 }
 .name-description input,
 .name-description textarea {

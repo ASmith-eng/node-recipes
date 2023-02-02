@@ -21,7 +21,7 @@ block content
             form.name-description(action="/admin/edit-recipe", method="POST")
                 .step-name
                     label(for="name") Dish Name
-                    input#dish-input(type="text", name="name", placeholder="#{dish}")
+                    input#dish-input(type="text", name="name", placeholder=dish)
                 .step-description 
                     label(for="description") Description
                     textarea#description-input(name="description", placeholder="Start typing to add a description")
