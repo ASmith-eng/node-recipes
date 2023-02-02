@@ -11,6 +11,13 @@
     margin: 40px 5% 0 5%;
 }
 
+.edit-form {
+    margin: 16px 0;
+    padding: 40px 0;
+    background-color: #A3DA8D;
+    border-top: 2px solid black;
+}
+
 .name-description {
     width: 70%;
     margin: 40px auto;

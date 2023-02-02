@@ -6,6 +6,7 @@ block title
 block styles
     link(rel="stylesheet", href="/styles/main.css")
     link(rel="stylesheet", href="/styles/detail.css")
+    link(rel="stylesheet", href="/styles/form.css")
 
 block additional-nav-links 
     li 
@@ -15,4 +16,13 @@ block content
     main 
         section.heading 
             h1 #{dish}
-            a(href='/recipes?dish='+dish) Cancel
+            a(href='/recipes?dish='+dish) Cancel 
+        section.edit-form 
+            form.name-description(action="/admin/edit-recipe", method="POST")
+                .step-name
+                    label(for="name") Dish Name
+                    input#dish-input(type="text", name="name", placeholder="#{dish}")
+                .step-description 
+                    label(for="description") Description
+                    textarea#description-input(name="description", placeholder="Start typing to add a description")
+                button(type="submit") Update Recipe
