@@ -1,7 +1,7 @@
 extends ../layouts/main-layout.pug
 
 block title 
-    title Editing- dish
+    title Editing-#{dish}
 
 block styles
     link(rel="stylesheet", href="/styles/main.css")
@@ -15,3 +15,4 @@ block content
     main 
         section.heading 
             h1 #{dish}
+            a(href='/recipes?dish='+dish) Cancel
