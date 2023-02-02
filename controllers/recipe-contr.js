@@ -25,6 +25,20 @@ exports.getEditRecipe = (req, res, next) => {
     });
 };
 
+exports.postEditRecipe = (req, res, next) => {
+    const oldName = req.query.dish;
+    Recipe.fetchNames((recipeNames) => {
+        if(recipeNames.includes(oldName)) {
+            const editedDish = new Recipe(req.body.name, req.body.description);
+            editedDish.update(oldName);
+            res.redirect('/');
+        }
+        else {
+            res.status(404).render('page-not-found');
+        }
+    });
+};
+
 /** User       **/
 exports.getHome = (req, res, next) => {
     Recipe.fetchAll((allRecipes) => {

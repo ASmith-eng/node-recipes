@@ -27,6 +27,26 @@ module.exports = class Recipe {
         });
     }
 
+    update(dishName) {
+        fs.readFile(recipeNameDir, (err, fileContent) => {
+            let recipeList = [];
+            if(!err) {
+                recipeList = JSON.parse(fileContent);
+            }
+            const updatedRecipeList = recipeList.map(obj => {
+                if (obj.name==dishName) {
+                    obj.name = this.name;
+                    obj.description = this.description;
+                }
+                return obj;
+            });
+            fs.writeFile(recipeNameDir, JSON.stringify(updatedRecipeList), (err) => {
+                console.log(err);
+            });
+        });
+        
+    }
+
     static fetchAll(callback) {
         fs.readFile(recipeNameDir, (err, fileContent) => {
             if (err) {

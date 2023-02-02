@@ -18,7 +18,7 @@ block content
             h1 #{dish}
             a(href='/recipes?dish='+dish) Cancel 
         section.edit-form 
-            form.name-description(action="/admin/edit-recipe", method="POST")
+            form.name-description(action='/admin/edit-recipe?dish='+dish, method="POST")
                 .step-name
                     label(for="name") Dish Name
                     input#dish-input(type="text", name="name", placeholder=dish)
