@@ -5,7 +5,13 @@ block title
 
 block styles
     link(rel="stylesheet", href="/styles/main.css")
+    link(rel="stylesheet", href="/styles/detail.css")
 
 block additional-nav-links 
     li 
-        a(href="/admin/add-recipe") Add Recipe
+        a(href="/admin/add-recipe") Add Recipe 
+
+block content 
+    main 
+        section.heading 
+            h1 #{dish}

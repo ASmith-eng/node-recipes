@@ -1,6 +1,6 @@
 const Recipe = require('../models/recipe');
 
-
+/** Admin **/
 exports.getAddRecipe = (req, res, next) => {
     res.render('./admin/add-recipe');
 };
