@@ -41,6 +41,7 @@ exports.postEditRecipe = (req, res, next) => {
 
 /** User       **/
 exports.getHome = (req, res, next) => {
+    Recipe.fetchAllMongo();
     Recipe.fetchAll((allRecipes) => {
         res.render('recipes', {
             dishes: allRecipes

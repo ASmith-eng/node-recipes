@@ -1,9 +1,17 @@
 const fs = require('fs');
 const path = require('path');
 
+//Third party modules
+const { MongoClient, ServerApiVersion } = require('mongodb');
+
 const rootDir = require('../utils/path');
 const recipeNameDir = path.join(rootDir, 'data', 'recipeNames.json');
 
+//Mongo client details
+const username = encodeURIComponent("appUser");
+const password = encodeURIComponent("U4g1ZxzhGXLjLWsj");
+let uri = 'mongodb+srv://appUser:U4g1ZxzhGXLjLWsj@FirstCluster.e24lft6.mongodb.net/?retryWrites=true&w=majority';
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 module.exports = class Recipe {
     constructor(name, description) {
@@ -59,7 +67,21 @@ module.exports = class Recipe {
     static fetchNames(callback) {
         this.fetchAll((parsedObjArray) => {
             let recipeNames = parsedObjArray.map(recipe => recipe.name);
-            callback(recipeNames)
+            callback(recipeNames);
         });
+    }
+
+    static fetchAllMongo() {
+        async function run() {
+            try {
+                const collection = client.db('recipesData').collection('recipeNames');
+                const recipe = await collection.findOne();
+                console.log(recipe);
+            }
+            finally {
+                await client.close();
+            }
+        }
+        run().catch(console.dir);
     }
 }
