@@ -74,9 +74,13 @@ module.exports = class Recipe {
     static fetchAllMongo() {
         async function run() {
             try {
+                // Define collection we should access recipeNames from, use projection to modify what fields are returned,
+                // define cursor that will receive the returned documents, limit to no of recipes required for homepage
+                // 'featured' section, print output to console as a test
                 const collection = client.db('recipesData').collection('recipeNames');
-                const recipe = await collection.findOne();
-                console.log(recipe);
+                const projection = {_id: 0, name: 1, description: 1, imgName: 1}
+                const recipeNamesCursor = await collection.find().project(projection).limit(3);
+                await recipeNamesCursor.forEach(console.dir);
             }
             finally {
                 await client.close();
