@@ -71,21 +71,24 @@ module.exports = class Recipe {
         });
     }
 
-    static fetchAllMongo() {
-        async function run() {
+    static fetchNamesMongo(callback) {
+        let allRecipes = [];
+        async function query() {
             try {
                 // Define collection we should access recipeNames from, use projection to modify what fields are returned,
                 // define cursor that will receive the returned documents, limit to no of recipes required for homepage
                 // 'featured' section, print output to console as a test
                 const collection = client.db('recipesData').collection('recipeNames');
-                const projection = {_id: 0, name: 1, description: 1, imgName: 1}
+                const projection = {_id: 0, name: 1, description: 1}
                 const recipeNamesCursor = await collection.find().project(projection).limit(3);
-                await recipeNamesCursor.forEach(console.dir);
+                await recipeNamesCursor.forEach(doc => {allRecipes.push(doc)});
+                await recipeNamesCursor.close();
+                callback(allRecipes);
             }
             finally {
                 await client.close();
             }
         }
-        run().catch(console.dir);
+        query().catch(console.dir);
     }
 }
