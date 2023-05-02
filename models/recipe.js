@@ -1,9 +1,17 @@
 const fs = require('fs');
 const path = require('path');
 
+//Third party modules
+const { MongoClient, ServerApiVersion } = require('mongodb');
+
 const rootDir = require('../utils/path');
 const recipeNameDir = path.join(rootDir, 'data', 'recipeNames.json');
 
+//Mongo client details
+const username = encodeURIComponent("appUser");
+const password = encodeURIComponent("U4g1ZxzhGXLjLWsj");
+let uri = 'mongodb+srv://appUser:U4g1ZxzhGXLjLWsj@FirstCluster.e24lft6.mongodb.net/?retryWrites=true&w=majority';
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 module.exports = class Recipe {
     constructor(name, description) {
@@ -59,7 +67,28 @@ module.exports = class Recipe {
     static fetchNames(callback) {
         this.fetchAll((parsedObjArray) => {
             let recipeNames = parsedObjArray.map(recipe => recipe.name);
-            callback(recipeNames)
+            callback(recipeNames);
         });
+    }
+
+    static fetchNamesMongo(callback) {
+        let allRecipes = [];
+        async function query() {
+            try {
+                // Define collection we should access recipeNames from, use projection to modify what fields are returned,
+                // define cursor that will receive the returned documents, limit to no of recipes required for homepage
+                // 'featured' section, print output to console as a test
+                const collection = client.db('recipesData').collection('recipeNames');
+                const projection = {_id: 0, name: 1, description: 1}
+                const recipeNamesCursor = await collection.find().project(projection).limit(3);
+                await recipeNamesCursor.forEach(doc => {allRecipes.push(doc)});
+                await recipeNamesCursor.close();
+                callback(allRecipes);
+            }
+            finally {
+                await client.close();
+            }
+        }
+        query().catch(console.dir);
     }
 }
