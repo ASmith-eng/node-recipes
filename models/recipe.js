@@ -70,7 +70,7 @@ module.exports = class Recipe {
         });
     }
 
-    static fetchNamesMongo(callback) {
+    static fetchNamesMongo(callback, itemLimit=100) {
         let allRecipes = [];
         async function query() {
             try {
@@ -79,13 +79,13 @@ module.exports = class Recipe {
                 // 'featured' section, print output to console as a test
                 const collection = client.db('recipesData').collection('recipeNames');
                 const projection = {_id: 0, name: 1, description: 1}
-                const recipeNamesCursor = await collection.find().project(projection).limit(3);
+                const recipeNamesCursor = await collection.find().project(projection).limit(itemLimit);
                 await recipeNamesCursor.forEach(doc => {allRecipes.push(doc)});
                 await recipeNamesCursor.close();
                 callback(allRecipes);
             }
             finally {
-                await client.close();
+                //await client.close();
             }
         }
         query().catch(console.dir);
