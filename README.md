@@ -1,9 +1,15 @@
 # node-recipes
-First personal Node.js app utilising Express.js to serve basic food recipe website.
+Personal Node.js app utilising Express.js to serve basic food recipe website.
 
-This is a work in progress and is intended for training purposes currently, with particular focus on back-end design (placeholder content).
+A work in progress and is intended for training and development. Placeholder content included to help develop both front and backend. Technologies:
+- Node.js
+- Express.js
+- Pug
+- CSS
+- MongoDB
 
-##MongoDB Document Format:
+## MongoDB Document Format:
+    
     {
         "recipeID": "[RECIPE_ID]",
         "name": "[NAME]",
