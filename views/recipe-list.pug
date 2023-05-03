@@ -5,14 +5,21 @@ block title
 
 block styles 
     link(rel="stylesheet", href="/styles/main.css")
+    link(rel="stylesheet", href="/styles/list.css")
 
 block content 
-    main 
-        section.list-container 
-            each recipe in dishes
-                a(href='/recipes?dish='+recipe.name)
-                    article.recipe-card
-                        .content
-                            h2 #{recipe.name} 
-                            p #{recipe.description}
-                        img.dish-img(src="/images/image.webp")
+    main  
+        if dishes.length>0
+            aside.filter-menu Filter bar coming soon
+            section.list-container
+                each recipe in dishes
+                    a(href='/recipes?dish='+recipe.name)
+                        article.recipe-card
+                            .content
+                                h2 #{recipe.name} 
+                                p #{recipe.description}
+                            img.dish-img(src="/images/image.webp")
+        else 
+            section.no-recipes 
+                .large-card 
+                    h1 No Recipes Found!
