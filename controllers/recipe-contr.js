@@ -41,7 +41,7 @@ exports.postEditRecipe = (req, res, next) => {
 
 /** User       **/
 exports.getHome = (req, res, next) => {
-    Recipe.fetchNamesMongo((featuredRecipes) => {
+    Recipe.fetchAllMongo((featuredRecipes) => {
         res.render('recipes', {
             dishes: featuredRecipes
         });
@@ -55,7 +55,7 @@ exports.getHome = (req, res, next) => {
 
 exports.getRecipeDetail = (req, res, next) => {
     const requestedDish = req.query.dish;
-    Recipe.fetchNames((recipeNames) => {
+    Recipe.fetchNamesMongo((recipeNames) => {
         if(recipeNames.includes(requestedDish)) {
             res.render('recipe-detail', {
                 dish: requestedDish

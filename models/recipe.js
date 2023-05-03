@@ -70,7 +70,7 @@ module.exports = class Recipe {
         });
     }
 
-    static fetchNamesMongo(callback, itemLimit=100) {
+    static fetchAllMongo(callback, itemLimit=100) {
         let allRecipes = [];
         async function query() {
             try {
@@ -89,5 +89,12 @@ module.exports = class Recipe {
             }
         }
         query().catch(console.dir);
+    }
+
+    static fetchNamesMongo(callback) {
+        this.fetchAllMongo((parsedObjArray) => {
+            let recipeNames = parsedObjArray.map(recipe => recipe.name);
+            callback(recipeNames);
+        });
     }
 }
