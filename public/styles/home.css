@@ -1,7 +1,13 @@
-
-/**     About card section  **/
-.about {
-    margin: 40px 0;
+/**     Nav customisations  **/
+header {
+    border-bottom: 1px solid black;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+}
+/**     Intro card section  **/
+.intro {
+    margin: 60px 0;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
@@ -30,7 +36,7 @@
     top: -26px;
     background-color: #FFF1BD;
     border: 2px solid black;
-    border-radius: 12px;
+    border-radius: 4px;
 }
 
 .feature-label p {
@@ -61,17 +67,17 @@
     background-color: white;
     border: 2px solid black;
     border-radius: 2px;
-    box-shadow: -3px 3px darkslategrey;
     transition-duration: 0.2s;
 }
 
 .recipe-card:hover {
-    box-shadow: -6px 4px black;
+    box-shadow: -4px 4px black;
+    translate: 3px -3px;
     cursor: pointer;
 }
 
 .recipe-card:active {
-    translate: -4px 3px;
+    translate: -1px 0px;
     box-shadow: none;
 }
 
@@ -108,4 +114,10 @@
     max-height: 110px;
     width: auto;
     height: auto;
+}
+
+/**    About section  **/
+.about {
+    margin: 0;
+    background-color: rgb(89, 131, 107);
 }
