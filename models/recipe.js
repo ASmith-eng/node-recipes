@@ -13,9 +13,10 @@ let uri = `mongodb+srv://${dbCredentials.dbUser}:${dbCredentials.dbPassword}@Fir
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 module.exports = class Recipe {
-    constructor(name, description) {
+    constructor(name, description, imageUrl) {
         this.name = name;
         this.description = description;
+        this.imageUrl = imageUrl;
     }
 
     save() {

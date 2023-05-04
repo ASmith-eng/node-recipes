@@ -6,7 +6,10 @@ exports.getAddRecipe = (req, res, next) => {
 };
 
 exports.postAddRecipe = (req, res, nex) => {
-    const recipe = new Recipe(req.body.name, req.body.description);
+    const name = req.body.name;
+    const description = req.body.description;
+    const imageUrl = req.body.imageUrl;
+    const recipe = new Recipe(name, description, imageUrl);
     recipe.save();
     res.redirect('/');
 };
@@ -68,7 +71,7 @@ exports.getRecipeDetail = (req, res, next) => {
 };
 
 exports.getRecipeList = (req, res, next) => {
-    Recipe.fetchAll((allRecipes) => {
+    Recipe.fetchAllMongo((allRecipes) => {
         res.render('./recipe-list', {
             dishes: allRecipes
         });
