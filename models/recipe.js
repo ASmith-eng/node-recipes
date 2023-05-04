@@ -20,6 +20,7 @@ module.exports = class Recipe {
     }
 
     save() {
+        this.id = Math.random().toString();
         fs.readFile(recipeNameDir, (err, fileContent) => {
             let recipeList = [];
             //If no error reading file, dump contents into recipeList
@@ -79,11 +80,28 @@ module.exports = class Recipe {
                 // define cursor that will receive the returned documents, limit to no of recipes required for homepage
                 // 'featured' section, print output to console as a test
                 const collection = client.db('recipesData').collection('recipeNames');
-                const projection = {_id: 0, name: 1, description: 1}
+                const projection = {_id: 0, recipeID: 1, name: 1, description: 1}
                 const recipeNamesCursor = await collection.find().project(projection).limit(itemLimit);
                 await recipeNamesCursor.forEach(doc => {allRecipes.push(doc)});
                 await recipeNamesCursor.close();
                 callback(allRecipes);
+            }
+            finally {
+                //await client.close();
+            }
+        }
+        query().catch(console.dir);
+    }
+
+    static queryRecipeById(id, callback) {
+        async function query() {
+            try {
+                const collection = client.db('recipesData').collection('recipeNames');
+                const options = {
+                    projection: {_id: 0, recipeID: 1, name: 1, description: 1}
+                };
+                const result = await collection.findOne({recipeID: id}, options);
+                callback(result);
             }
             finally {
                 //await client.close();

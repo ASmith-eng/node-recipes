@@ -49,19 +49,14 @@ exports.getHome = (req, res, next) => {
             dishes: featuredRecipes
         });
     }, 4);
-    /**Recipe.fetchAll((allRecipes) => {
-        res.render('recipes', {
-            dishes: allRecipes
-        });
-    });**/
 };
 
 exports.getRecipeDetail = (req, res, next) => {
-    const requestedDish = req.query.dish;
-    Recipe.fetchNamesMongo((recipeNames) => {
-        if(recipeNames.includes(requestedDish)) {
+    const requestedID = parseInt(req.params.recipeID);
+    Recipe.queryRecipeById(requestedID, (result) => {
+        if(result.recipeID==requestedID) {
             res.render('recipe-detail', {
-                dish: requestedDish
+                dish: result.name
             });
         }
         else {
