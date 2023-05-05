@@ -29,11 +29,11 @@ exports.getEditRecipe = (req, res, next) => {
 };
 
 exports.postEditRecipe = (req, res, next) => {
-    const oldName = req.query.dish;
-    Recipe.fetchNames((recipeNames) => {
-        if(recipeNames.includes(oldName)) {
-            const editedDish = new Recipe(req.body.name, req.body.description);
-            editedDish.update(oldName);
+    const editedID = parseInt(req.params.recipeID);
+    Recipe.queryRecipeById(editedID, (result) => {
+        if(result.recipeID==editedID) {
+            const editedDish = new Recipe(editedID, req.body.name, req.body.description, req.body.imageUrl);
+            editedDish.updateMongo(editedID);
             res.redirect('/');
         }
         else {

@@ -15,14 +15,17 @@ block additional-nav-links
 block content 
     main 
         section.heading 
-            h1 #{dish.name}
+            h1 Editing #{dish.name}
             a(href='/recipes/'+dish.recipeID) Cancel 
         section.edit-form 
-            form.name-description(action='/admin/edit-recipe?dish='+dish.name, method="POST")
+            form.name-description(action='/admin/edit-recipe/'+dish.recipeID, method="POST")
                 .step-name
                     label(for="name") Dish Name
-                    input#dish-input(type="text", name="name", placeholder=dish.name)
+                    input#dish-input(type="text", name="name", value=dish.name)
                 .step-description 
                     label(for="description") Description
-                    textarea#description-input(name="description", placeholder="Start typing to add a description")
+                    textarea#description-input(name="description") #{dish.description}
+                .step-image
+                    label(for="image") Image URL
+                    input#image-input(type="text", name="imageUrl", value=dish.imgName)
                 button(type="submit") Update Recipe

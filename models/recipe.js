@@ -13,7 +13,8 @@ let uri = `mongodb+srv://${dbCredentials.dbUser}:${dbCredentials.dbPassword}@Fir
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 module.exports = class Recipe {
-    constructor(name, description, imageUrl) {
+    constructor(id, name, description, imageUrl) {
+        this.id = id
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
@@ -36,40 +37,24 @@ module.exports = class Recipe {
         });
     }
 
-    update(dishName) {
-        fs.readFile(recipeNameDir, (err, fileContent) => {
-            let recipeList = [];
-            if(!err) {
-                recipeList = JSON.parse(fileContent);
+    updateMongo(recipeID) {
+        const updatedFields = {name: this.name, description: this.description, imgName: this.imageUrl};
+        async function update() {
+            try {
+                const collection = client.db('recipesData').collection('recipeNames');
+                await collection.updateOne(
+                    {recipeID: recipeID},
+                    {
+                        $set: updatedFields,
+                        //$currentDate: { lastModified: true }
+                    }
+                );
             }
-            const updatedRecipeList = recipeList.map(obj => {
-                if (obj.name==dishName) {
-                    obj.name = this.name;
-                    obj.description = this.description;
-                }
-                return obj;
-            });
-            fs.writeFile(recipeNameDir, JSON.stringify(updatedRecipeList), (err) => {
-                console.log(err);
-            });
-        });
-        
-    }
-
-    static fetchAll(callback) {
-        fs.readFile(recipeNameDir, (err, fileContent) => {
-            if (err) {
-                callback([]);
+            finally {
+                //await client.close();
             }
-            callback(JSON.parse(fileContent));
-        });
-    }
-
-    static fetchNames(callback) {
-        this.fetchAll((parsedObjArray) => {
-            let recipeNames = parsedObjArray.map(recipe => recipe.name);
-            callback(recipeNames);
-        });
+        }
+        update().catch(console.dir);
     }
 
     static fetchAllMongo(callback, itemLimit=100) {
@@ -98,7 +83,7 @@ module.exports = class Recipe {
             try {
                 const collection = client.db('recipesData').collection('recipeNames');
                 const options = {
-                    projection: {_id: 0, recipeID: 1, name: 1, description: 1}
+                    projection: {_id: 0, recipeID: 1, name: 1, description: 1, imgName: 1}
                 };
                 const result = await collection.findOne({recipeID: id}, options);
                 callback(result);
@@ -110,10 +95,10 @@ module.exports = class Recipe {
         query().catch(console.dir);
     }
 
-    static fetchNamesMongo(callback) {
+    /**static fetchNamesMongo(callback) {
         this.fetchAllMongo((parsedObjArray) => {
             let recipeNames = parsedObjArray.map(recipe => recipe.name);
             callback(recipeNames);
         });
-    }
+    }**/
 }
