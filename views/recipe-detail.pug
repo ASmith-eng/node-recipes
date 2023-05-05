@@ -1,7 +1,7 @@
 extends layouts/main-layout.pug
 
 block title 
-    title #{dish}
+    title #{dish.name}
 
 block styles
     link(rel="stylesheet", href="/styles/main.css")
@@ -14,8 +14,8 @@ block additional-nav-links
 block content 
     main 
         section.heading 
-            h1 #{dish}
-            a(href='admin/edit-recipe?dish='+dish) Edit This Recipe
+            h1 #{dish.name}
+            a(href='/admin/edit-recipe/'+dish.recipeID) Edit This Recipe
         section.description
             .section-title
                 h2 Description

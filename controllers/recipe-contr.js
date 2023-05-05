@@ -15,11 +15,11 @@ exports.postAddRecipe = (req, res, nex) => {
 };
 
 exports.getEditRecipe = (req, res, next) => {
-    const requestedDish = req.query.dish;
-    Recipe.fetchNames((recipeNames) => {
-        if(recipeNames.includes(requestedDish)) {
+    const requestedID = parseInt(req.params.recipeID);
+    Recipe.queryRecipeById(requestedID, (result) => {
+        if(result.recipeID==requestedID) {
             res.render('./admin/edit-recipe', {
-                dish: requestedDish
+                dish: result
             });
         }
         else {
@@ -56,7 +56,7 @@ exports.getRecipeDetail = (req, res, next) => {
     Recipe.queryRecipeById(requestedID, (result) => {
         if(result.recipeID==requestedID) {
             res.render('recipe-detail', {
-                dish: result.name
+                dish: result
             });
         }
         else {

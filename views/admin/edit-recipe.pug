@@ -1,7 +1,7 @@
 extends ../layouts/main-layout.pug
 
 block title 
-    title Editing-#{dish}
+    title Editing-#{dish.name}
 
 block styles
     link(rel="stylesheet", href="/styles/main.css")
@@ -15,13 +15,13 @@ block additional-nav-links
 block content 
     main 
         section.heading 
-            h1 #{dish}
-            a(href='/recipes?dish='+dish) Cancel 
+            h1 #{dish.name}
+            a(href='/recipes/'+dish.recipeID) Cancel 
         section.edit-form 
-            form.name-description(action='/admin/edit-recipe?dish='+dish, method="POST")
+            form.name-description(action='/admin/edit-recipe?dish='+dish.name, method="POST")
                 .step-name
                     label(for="name") Dish Name
-                    input#dish-input(type="text", name="name", placeholder=dish)
+                    input#dish-input(type="text", name="name", placeholder=dish.name)
                 .step-description 
                     label(for="description") Description
                     textarea#description-input(name="description", placeholder="Start typing to add a description")
