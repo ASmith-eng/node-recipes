@@ -121,7 +121,8 @@ header {
 .about {
     margin: 0;
     padding: 160px 0;
-    background-color: #FFF1BD;
+    background: rgb(255,241,189);
+    background: linear-gradient(146deg, rgba(255,241,189,1) 0%, rgba(255,232,151,1) 92%, rgba(210,183,121,1) 100%);
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
