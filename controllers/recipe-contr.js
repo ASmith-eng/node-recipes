@@ -6,10 +6,11 @@ exports.getAddRecipe = (req, res, next) => {
 };
 
 exports.postAddRecipe = (req, res, nex) => {
+    const id = 16;
     const name = req.body.name;
     const description = req.body.description;
     const imageUrl = req.body.imageUrl;
-    const recipe = new Recipe(name, description, imageUrl);
+    const recipe = new Recipe(id, name, description, imageUrl);
     recipe.save();
     res.redirect('/');
 };
@@ -17,7 +18,7 @@ exports.postAddRecipe = (req, res, nex) => {
 exports.getEditRecipe = (req, res, next) => {
     const requestedID = parseInt(req.params.recipeID);
     Recipe.queryRecipeById(requestedID, (result) => {
-        if(result.recipeID==requestedID) {
+        if(result!=null && result.recipeID==requestedID) {
             res.render('./admin/edit-recipe', {
                 dish: result
             });

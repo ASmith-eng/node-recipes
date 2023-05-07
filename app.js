@@ -9,6 +9,7 @@ const parser = require('body-parser');
 /**     This app's custom modules              **/
 const rootDir = require('./utils/path');
 const errorController = require('./controllers/error-contr');
+const dbConnect = require('./utils/database').mongoConnect;
 
 const app = express();
 
@@ -33,4 +34,8 @@ app.use(userRoutes);
  * routes above we should send generic 404 page **/
 app.use(errorController.getPageNotFound);
 
-app.listen(3000);
+dbConnect(() => {
+    app.listen(3000);
+})
+
+//app.listen(3000);
