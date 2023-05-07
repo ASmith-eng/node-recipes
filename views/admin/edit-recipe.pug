@@ -16,7 +16,7 @@ block content
     main 
         section.heading 
             h1 Editing #{dish.name}
-            a(href='/recipes/'+dish.recipeID) Cancel 
+            a.link-button(href='/recipes/'+dish.recipeID) Cancel 
         section.edit-form 
             form.name-description(action='/admin/edit-recipe/'+dish.recipeID, method="POST")
                 .step-name

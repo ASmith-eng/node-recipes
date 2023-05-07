@@ -16,6 +16,26 @@ a {
     text-decoration: none;
 }
 
+.link-button {
+    margin: 0;
+    padding: 6px 8px;
+    color: black;
+    background-color: #FFF1BD;
+    border: 2px solid black;
+    border-radius: 2px;
+    transition-duration: 0.3s;
+}
+
+.link-button:hover {
+    box-shadow: -5px 5px black;
+    background-color: #A3DA8D;
+}
+
+.link-button:active {
+    translate: -3px 2px;
+    box-shadow: none;
+}
+
 /**     Logo                **/
 .logo img {
     padding: 10px 20px;

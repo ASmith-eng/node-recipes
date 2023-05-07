@@ -19,7 +19,7 @@
 }
 
 .name-description {
-    width: 70%;
+    width: 75%;
     margin: 40px auto;
     display: -webkit-box;
     display: -webkit-flex;
@@ -28,7 +28,8 @@
     justify-content: space-between;
 }
 
-.step-name {
+.step-name,
+.step-image {
     width: 35%;
 }
 
@@ -37,25 +38,29 @@
 }
 
 form label {
+    width: 60%;
     margin: 4px 0;
     font-size: 1.1rem;
-    display: block;
+    display: inline-block;
 }
 
 form button {
-    margin: 20px 0;
-    padding: 4px 10px;
+    margin: 38px 0;
+    padding: 6px 8px;
     font-size: 1.1rem;
     font-weight: 600;
-    color: rgb(22, 39, 10);
-    background-color: bisque;
+    color: black;
+    background-color: white;
     border: 2px solid black;
-    border-radius: 1px;
+    border-radius: 2px;
+    transition-duration: 0.3s;
 }
 
 form button:hover {
-    box-shadow: -3px 4px black;
+    box-shadow: -5px 5px black;
+    background-color: #FFF1BD;
 }
+
 .name-description input,
 .name-description textarea {
     width: 80%;
@@ -68,10 +73,12 @@ form button:hover {
 
 #description-input {
     height: 100px;
+    width: 100%;
     resize: none;
 }
 
 #dish-input,
-#description-input {
-    font-family: inherit;
+#description-input,
+#image-input {
+    font-family: sans-serif;
 }
