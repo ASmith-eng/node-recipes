@@ -1,0 +1,22 @@
+extends ../layouts/main-layout.pug
+
+block title
+    title Recipes-Login
+
+block styles 
+    link(rel="stylesheet", href="/styles/main.css")
+    link(rel="stylesheet", href="/styles/signin.css")
+
+block content
+    section.form-container
+        .message
+            p Admin users can sign in here to add and update recipes!
+            p Please do not enter any sensitive info here
+        .signin-card
+            .signin-content
+                form.signin
+                    input#username(type="text", name="username", placeholder="User name / Email")
+                    input#password(type="password", name="password", placeholder="Password")
+                    button.link-button(type="submit") Login
+            .signin-background
+                span.background-shape

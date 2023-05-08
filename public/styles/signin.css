@@ -1,0 +1,92 @@
+section * {
+    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.form-container {
+    margin: 40px 0 40px 0;
+    display: flex;
+	align-items: center;
+	justify-content: center;
+    gap: 6rem;
+}
+
+.message,
+.signin-card {
+    height: 520px;
+    width: 390px;
+}
+
+.message {
+    padding: 100px 20px 0 20px;
+}
+
+.message p {
+    margin-top: 40px;
+}
+
+.signin-card {		
+    background: repeating-linear-gradient( 45deg, rgb(89, 131, 107), rgba(89, 131, 107, 1) 4px, #A3DA8D 4px, #A3DA8D 20px );	
+    border: 2px solid black;
+    border-radius: 2px;
+    position: relative;		
+    box-shadow: -11px 14px #F3C892;
+}
+
+.signin-content {
+	z-index: 1;
+	position: relative;	
+	height: 100%;
+}
+
+.signin {
+	width: 240px;
+	margin: 180px 0 30px 30px;
+}
+
+.signin input {
+    padding: 20px 0px;	
+	position: relative;	
+}
+
+#username,
+#password {
+    margin-bottom: 16px;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 2px;
+    background: none;
+    font-weight: 700;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.signin button {
+    margin: 0 0 20px auto;
+    font-family: inherit;
+    display: block;
+    justify-self: right;
+}
+
+.signin-background {
+    position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 0;
+	-webkit-clip-path: inset(0 0 0 0);
+	clip-path: inset(0 0 0 0);	
+}
+
+.background-shape {
+    height: 520px;
+	width: 520px;
+	background: #FFF;	
+	top: -20px;
+	right: 140px;	
+	border-radius: 0 32px 0 0;
+    transform: rotate(45deg);
+	position: absolute;
+}

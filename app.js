@@ -19,6 +19,7 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const userRoutes = require('./routes/user');
+const authRoutes = require('./routes/auth');
 
 app.use(parser.urlencoded({extended: false}));
 /** Make directory 'public' statically accessible (read only access for anyone
@@ -26,9 +27,10 @@ app.use(parser.urlencoded({extended: false}));
 app.use(express.static(path.join(rootDir, 'public')));
 
 /** Incoming requests handled by imported adminRoutes if prefaced with /admin
- * otherwise we will look for a criteria match in userRoutes **/
+ * otherwise we will look for a criteria match in userRoutes, authRoutes **/
 app.use('/admin', adminRoutes);
 app.use(userRoutes);
+app.use(authRoutes);
 
 /** If the request has not been picked up and a response sent from middleware in 
  * routes above we should send generic 404 page **/
@@ -37,5 +39,3 @@ app.use(errorController.getPageNotFound);
 dbConnect(() => {
     app.listen(3000);
 })
-
-//app.listen(3000);
