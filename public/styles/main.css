@@ -19,6 +19,7 @@ a {
 .link-button {
     margin: 0;
     padding: 6px 8px;
+    display: inline-block;
     color: black;
     background-color: #FFF1BD;
     border: 2px solid black;
@@ -77,6 +78,13 @@ nav ul {
     background-color: #A3DA8D;
     border-bottom-style: solid;
     border-color: black;
+}
+
+.sign-in {
+    margin: 0 2% 0 auto;
+    justify-self: end;
+    display: inherit;
+    align-items: center;
 }
 
 /**     Large card section  **/
