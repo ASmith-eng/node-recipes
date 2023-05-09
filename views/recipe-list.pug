@@ -13,7 +13,7 @@ block content
             aside.filter-menu Filter bar coming soon
             section.list-container
                 each recipe in dishes
-                    a(href='/recipes/'+recipe.recipeID)
+                    a(href='/recipes/'+recipe._id)
                         article.recipe-card
                             .content
                                 h2 #{recipe.name} 

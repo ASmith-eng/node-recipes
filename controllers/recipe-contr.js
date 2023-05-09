@@ -6,19 +6,18 @@ exports.getAddRecipe = (req, res, next) => {
 };
 
 exports.postAddRecipe = (req, res, nex) => {
-    const id = 16;
     const name = req.body.name;
     const description = req.body.description;
     const imageUrl = req.body.imageUrl;
-    const recipe = new Recipe(id, name, description, imageUrl);
+    const recipe = new Recipe(name, description, imageUrl);
     recipe.save();
     res.redirect('/');
 };
 
 exports.getEditRecipe = (req, res, next) => {
-    const requestedID = parseInt(req.params.recipeID);
-    Recipe.queryRecipeById(requestedID, (result) => {
-        if(result!=null && result.recipeID==requestedID) {
+    const requestedId = req.params.recipeId;
+    Recipe.queryRecipeById((requestedId), (result) => {
+        if(result!=null && result._id==requestedId) {
             res.render('./admin/edit-recipe', {
                 dish: result
             });
@@ -30,11 +29,11 @@ exports.getEditRecipe = (req, res, next) => {
 };
 
 exports.postEditRecipe = (req, res, next) => {
-    const editedID = parseInt(req.params.recipeID);
-    Recipe.queryRecipeById(editedID, (result) => {
-        if(result.recipeID==editedID) {
-            const editedDish = new Recipe(editedID, req.body.name, req.body.description, req.body.imageUrl);
-            editedDish.updateMongo(editedID);
+    const editedId = req.params.recipeId;
+    Recipe.queryRecipeById(editedId, (result) => {
+        if(result._id==editedId) {
+            const editedDish = new Recipe(req.body.name, req.body.description, req.body.imageUrl);
+            editedDish.update(editedId);
             res.redirect('/');
         }
         else {
@@ -53,9 +52,9 @@ exports.getHome = (req, res, next) => {
 };
 
 exports.getRecipeDetail = (req, res, next) => {
-    const requestedID = parseInt(req.params.recipeID);
-    Recipe.queryRecipeById(requestedID, (result) => {
-        if(result.recipeID==requestedID) {
+    const requestedId = req.params.recipeId;
+    Recipe.queryRecipeById(requestedId, (result) => {
+        if(result._id==requestedId) {
             res.render('recipe-detail', {
                 dish: result
             });

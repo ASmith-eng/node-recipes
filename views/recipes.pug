@@ -24,7 +24,7 @@ block content
                 div.feature-label
                     p Featured
                 each recipe in dishes
-                    a(href='/recipes/'+recipe.recipeID)
+                    a(href='/recipes/'+recipe._id)
                         article.recipe-card
                             .content
                                 h2 #{recipe.name} 
