@@ -7,16 +7,18 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 let _db;
 
-const mongoConnect = (callback) => {client.connect()
-    .then(result => {
-        console.log("Connected");
-        _db = client.db('recipesData');
-        callback();
-    })
-    .catch(err => {
-        console.log(err);
-        throw err;
-    });
+const mongoConnect = (callback) => {
+    console.log("Connecting to database...");
+    client.connect()
+        .then(result => {
+            console.log("Connected!");
+            _db = client.db('recipesData');
+            callback();
+        })
+        .catch(err => {
+            console.log(err);
+            throw err;
+        });
 };
 
 const getDb = () => {

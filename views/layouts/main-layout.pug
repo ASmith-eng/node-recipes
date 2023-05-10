@@ -16,7 +16,8 @@ html(lang="en")
                     li
                         a(href="/") Home 
                     block additional-nav-links
-                ul.sign-in 
-                    li
-                        a.link-button(href="/login") Login
+                unless isAuthenticated==true
+                    ul.sign-in
+                        li
+                            a.link-button(href="/login") Login
         block content

@@ -22,11 +22,15 @@
   },
   "dependencies": {
     "body-parser": "^1.20.1",
+    "connect-mongodb-session": "^3.1.1",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
     "mongodb": "^5.1.0",
     "pug": "^3.0.2"
   },
   "nodemonConfig": {
-    "ignore": ["data/recipeNames.json"]
+    "ignore": [
+      "data/recipeNames.json"
+    ]
   }
 }

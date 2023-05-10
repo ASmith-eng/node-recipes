@@ -9,7 +9,7 @@ exports.postAddRecipe = (req, res, nex) => {
     const name = req.body.name;
     const description = req.body.description;
     const imageUrl = req.body.imageUrl;
-    const recipe = new Recipe(name, description, imageUrl);
+    const recipe = new Recipe(name, description, imageUrl, req.user._id);
     recipe.save();
     res.redirect('/');
 };
@@ -46,7 +46,8 @@ exports.postEditRecipe = (req, res, next) => {
 exports.getHome = (req, res, next) => {
     Recipe.fetchAllMongo((featuredRecipes) => {
         res.render('recipes', {
-            dishes: featuredRecipes
+            dishes: featuredRecipes,
+            isAuthenticated: req.session.isAuthenticated
         });
     }, 4);
 };

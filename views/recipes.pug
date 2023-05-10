@@ -10,8 +10,9 @@ block styles
 block additional-nav-links 
     li 
         a(href="recipe-list") Full List
-    li
-        a(href="/admin/add-recipe") Add Recipe
+    if isAuthenticated==true
+        li
+            a(href="/admin/add-recipe") Add Recipe
 
 block content 
     main 

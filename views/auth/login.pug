@@ -14,8 +14,8 @@ block content
             p Please do not enter any sensitive info here
         .signin-card
             .signin-content
-                form.signin
-                    input#username(type="text", name="username", placeholder="User name / Email")
+                form.signin(action="/login", method="POST")
+                    input#username(type="email", name="username", placeholder="Email")
                     input#password(type="password", name="password", placeholder="Password")
                     button.link-button(type="submit") Login
             .signin-background
