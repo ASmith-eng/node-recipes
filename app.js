@@ -38,7 +38,11 @@ app.use(express.static(path.join(rootDir, 'public')));
 app.use(session({secret: secrets.sessionKey, resave: false, saveUninitialized: false, store: store}));
 
 app.use((req, res, next) => {
-    User.queryUserById('645a89cc5238b8f44235c293')
+    // Skip if no session active (no session cookie received, so session properties return undefined)
+    if(!req.session.user) {
+        return next();
+    }
+    User.queryUserById(req.session.user._id)
         .then(result => {
             req.user = result;
             next();

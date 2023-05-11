@@ -57,7 +57,8 @@ exports.getRecipeDetail = (req, res, next) => {
     Recipe.queryRecipeById(requestedId, (result) => {
         if(result._id==requestedId) {
             res.render('recipe-detail', {
-                dish: result
+                dish: result,
+                isAuthenticated: req.session.isAuthenticated
             });
         }
         else {
