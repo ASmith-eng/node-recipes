@@ -20,4 +20,9 @@ html(lang="en")
                     ul.sign-in
                         li
                             a.link-button(href="/login") Login
+                if isAuthenticated==true 
+                    ul.sign-out
+                        li
+                            form(action="/logout", method="POST")
+                                button.link-button(type="submit") Log-out
         block content

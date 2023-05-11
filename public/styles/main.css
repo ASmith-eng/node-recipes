@@ -20,6 +20,8 @@ a {
     margin: 0;
     padding: 6px 8px;
     display: inline-block;
+    font-size: inherit;
+    font-family: inherit;
     color: black;
     background-color: #FFF1BD;
     border: 2px solid black;
@@ -80,7 +82,8 @@ nav ul {
     border-color: black;
 }
 
-.sign-in {
+.sign-in,
+.sign-out {
     margin: 0 2% 0 auto;
     justify-self: end;
     display: inherit;
