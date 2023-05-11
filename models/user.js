@@ -4,9 +4,9 @@ const getDb = require('../utils/database').getDb;
 const ObjectId = mongodb.ObjectId;
 
 module.exports = class User {
-    constructor(username, email) {
-        this.name = username;
+    constructor(email, password) {
         this.email = email;
+        this.password = password;
     }
 
     save() {
@@ -19,6 +19,12 @@ module.exports = class User {
             .catch(err => {
                 console.log(err);
             });
+    }
+
+    static findOne(fields) {
+        const db = getDb();
+        const collection = db.collection('users');
+        return collection.findOne(fields);
     }
 
     static queryUserById(id, callback) {
