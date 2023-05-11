@@ -5,7 +5,8 @@ section * {
 }
 
 .form-container {
-    margin: 40px 0 40px 0;
+    padding: 40px 0 40px 0;
+    background-color: #A3DA8D;
     display: flex;
 	align-items: center;
 	justify-content: center;
@@ -13,7 +14,7 @@ section * {
 }
 
 .message,
-.signin-card {
+.signup-card {
     height: 520px;
 }
 
@@ -26,34 +27,35 @@ section * {
     margin-top: 40px;
 }
 
-.signin-card {
+.signup-card {
     min-width: 400px;
-    background: repeating-linear-gradient( 45deg, rgb(89, 131, 107), rgba(89, 131, 107, 1) 4px, #A3DA8D 4px, #A3DA8D 20px );	
+    background: repeating-linear-gradient( 45deg, rgb(215, 166, 106), rgba(215, 166, 106, 1) 4px, #FFF1BD 4px, #FFF1BD 20px );	
     border: 2px solid black;
     border-radius: 2px;
     position: relative;		
-    box-shadow: -11px 14px #F3C892;
+    box-shadow: -11px 14px #84af73;
 }
 
-.signin-content {
+.signup-content {
 	z-index: 1;
 	position: relative;	
 	height: 100%;
 }
 
-.signin {
+.signup {
 	width: 240px;
 	margin: 164px 0 30px 30px;
 }
 
-.signin input {
+.signup input {
     padding: 20px 0px;	
 	position: relative;	
 }
 
 #username,
-#password {
-    margin-bottom: 16px;
+#password,
+#confirm-password {
+    margin-bottom: 10px;
     padding: 10px;
     border: 2px solid black;
     border-radius: 2px;
@@ -65,19 +67,19 @@ section * {
     transition: 0.3s;
 }
 
-.signup-link {
+.signin-link {
     width: 60%;
     display: inline-block;
     font-size: 0.8rem;
 }
 
-.signin button {
+.signup button {
     margin: 0 0 0 auto;
     font-family: inherit;
     float: right;
 }
 
-.signin-background {
+.signup-background {
     position: absolute;
 	top: 0;
 	left: 0;
@@ -92,8 +94,8 @@ section * {
     height: 520px;
 	width: 520px;
 	background: #FFF;	
-	top: -20px;
-	right: 140px;	
+	top: -10px;
+	right: 120px;	
 	border-radius: 0 32px 0 0;
     transform: rotate(45deg);
 	position: absolute;

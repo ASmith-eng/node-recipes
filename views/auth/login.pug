@@ -17,6 +17,9 @@ block content
                 form.signin(action="/login", method="POST")
                     input#username(type="email", name="username", placeholder="Email")
                     input#password(type="password", name="password", placeholder="Password")
+                    .signup-link
+                        p Don't have an account?<br />
+                        a.link-inline(href="/signup") sign up here
                     button.link-button(type="submit") Login
             .signin-background
                 span.background-shape

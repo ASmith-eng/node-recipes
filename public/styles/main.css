@@ -39,6 +39,15 @@ a {
     box-shadow: none;
 }
 
+.link-inline {
+    font-weight: 800;
+    color: rgb(89, 131, 107);
+}
+
+.link-inline:hover {
+    color: black;
+}
+
 /**     Logo                **/
 .logo img {
     padding: 10px 20px;

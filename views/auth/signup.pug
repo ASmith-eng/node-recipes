@@ -1,0 +1,26 @@
+extends ../layouts/main-layout.pug
+
+block title
+    title Recipes-Sign up
+
+block styles 
+    link(rel="stylesheet", href="/styles/main.css")
+    link(rel="stylesheet", href="/styles/signup.css")
+
+block content
+    section.form-container
+        .message
+            p Sign up for a Recipes account to create and edit your own recipes
+            p Join thousands of other users!
+        .signup-card
+            .signup-content
+                form.signup(action="/signup", method="POST")
+                    input#username(type="email", name="username", placeholder="Email")
+                    input#password(type="password", name="password", placeholder="Password")
+                    input#confirm-password(type="password", name="confirmPassword", placeholder="Confirm password")
+                    .signin-link
+                        p Have an account?<br />
+                        a.link-inline(href="/login") Log in here
+                    button.link-button(type="submit") Sign up
+            .signup-background
+                span.background-shape
