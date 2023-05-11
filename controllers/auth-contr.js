@@ -31,16 +31,6 @@ exports.postLogin = (req, res, next) => {
                     res.redirect('/login')
                 });
         })
-    User.queryUserById('645a89cc5238b8f44235c293')
-        .then(user => {
-            req.session.isAuthenticated = true;
-            req.session.user = user;
-            req.session.save((err) => {
-                console.log(err);
-                res.redirect('/');
-            })
-        })
-        .catch(err => console.log(err));
 };
 
 exports.postLogout = (req, res, next) => {
