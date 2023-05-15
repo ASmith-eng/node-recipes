@@ -25,4 +25,6 @@ html(lang="en")
                         li
                             form(action="/logout", method="POST")
                                 button.link-button(type="submit") Log-out
+                                input(type="hidden", name="CSRFToken", value=csrfToken)
+
         block content

@@ -22,5 +22,6 @@ block content
                         p Have an account?<br />
                         a.link-inline(href="/login") Log in here
                     button.link-button(type="submit") Sign up
+                    input(type="hidden", name="CSRFToken", value=csrfToken)
             .signup-background
                 span.background-shape

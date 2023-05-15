@@ -29,3 +29,4 @@ block content
                     label(for="image") Image URL
                     input#image-input(type="text", name="imageUrl", value=dish.imgName)
                 button(type="submit") Update Recipe
+                input(type="hidden", name="CSRFToken", value=csrfToken)

@@ -47,7 +47,7 @@ exports.getHome = (req, res, next) => {
     Recipe.fetchAllMongo((featuredRecipes) => {
         res.render('recipes', {
             dishes: featuredRecipes,
-            isAuthenticated: req.session.isAuthenticated
+            //isAuthenticated: req.session.isAuthenticated
         });
     }, 4);
 };
@@ -58,7 +58,7 @@ exports.getRecipeDetail = (req, res, next) => {
         if(result._id==requestedId) {
             res.render('recipe-detail', {
                 dish: result,
-                isAuthenticated: req.session.isAuthenticated
+                //isAuthenticated: req.session.isAuthenticated
             });
         }
         else {

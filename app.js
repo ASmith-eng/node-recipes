@@ -7,6 +7,7 @@ const express = require('express');
 const parser = require('body-parser');
 const session = require('express-session');
 const MongoSessionStore = require('connect-mongodb-session')(session);
+const { csrfSync } = require('csrf-sync');
 
 /**     This app's custom modules              **/
 const rootDir = require('./utils/path');
@@ -20,6 +21,13 @@ const app = express();
 const store = new MongoSessionStore({
     uri: `mongodb+srv://${secrets.dbUser}:${secrets.dbPassword}@FirstCluster.e24lft6.mongodb.net/recipesData`,
     collection: 'sessions'
+});
+
+/** Initialise CSRF protection **/
+const { csrfSynchronisedProtection } = csrfSync({
+    getTokenFromRequest: (req) => {
+        return req.body['CSRFToken'];
+    }
 });
 
 /** Declare templating engine (pug) **/
@@ -36,6 +44,8 @@ app.use(parser.urlencoded({extended: false}));
 app.use(express.static(path.join(rootDir, 'public')));
 /** Define session using the express-session module  **/
 app.use(session({secret: secrets.sessionKey, resave: false, saveUninitialized: false, store: store}));
+/** Access CSRF token after session initialised **/
+app.use(csrfSynchronisedProtection);
 
 app.use((req, res, next) => {
     // Skip if no session active (no session cookie received, so session properties return undefined)
@@ -48,6 +58,12 @@ app.use((req, res, next) => {
             next();
         })
         .catch(err => console.log(err));
+});
+
+app.use((req, res, next) => {
+    res.locals.csrfToken = req.csrfToken();
+    res.locals.isAuthenticated = req.session.isAuthenticated;
+    next();
 });
 
 /** Incoming requests handled by imported adminRoutes if prefaced with /admin
