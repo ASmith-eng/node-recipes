@@ -1,16 +1,14 @@
-const path = require('path');
-
 const express = require('express');
 
 const recipesController = require('../controllers/recipe-contr');
-const isAuth = require('../middleware/isAuth');
+const requiresAuth = require('../middleware/requiresAuth');
 
 const router = express.Router();
 
-router.get('/add-recipe', isAuth, recipesController.getAddRecipe);
-router.get('/edit-recipe/:recipeId', isAuth, recipesController.getEditRecipe);
+router.get('/add-recipe', requiresAuth, recipesController.getAddRecipe);
+router.get('/edit-recipe/:recipeId', requiresAuth, recipesController.getEditRecipe);
 
-router.post('/add-recipe', isAuth, recipesController.postAddRecipe);
-router.post('/edit-recipe/:recipeId', isAuth, recipesController.postEditRecipe);
+router.post('/add-recipe', requiresAuth, recipesController.postAddRecipe);
+router.post('/edit-recipe/:recipeId', requiresAuth, recipesController.postEditRecipe);
 
 module.exports = router;
