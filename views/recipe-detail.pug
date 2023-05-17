@@ -15,7 +15,7 @@ block content
     main 
         section.heading 
             h1 #{dish.name}
-            if isAuthenticated==true
+            if isOwner==true
                 a.link-button(href='/admin/edit-recipe/'+dish._id) Edit This Recipe
         section.description
             .section-title

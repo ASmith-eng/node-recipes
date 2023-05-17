@@ -1,4 +1,5 @@
 const Recipe = require('../models/recipe');
+const isRecipeOwner = require('../utils/isRecipeOwner');
 
 /** Admin **/
 exports.getAddRecipe = (req, res, next) => {
@@ -16,10 +17,14 @@ exports.postAddRecipe = (req, res, nex) => {
 
 exports.getEditRecipe = (req, res, next) => {
     const requestedId = req.params.recipeId;
-    Recipe.queryRecipeById((requestedId), (result) => {
-        if(result!=null && result._id==requestedId) {
+    Recipe.queryRecipeById((requestedId), (recipe) => {
+        const isOwner = isRecipeOwner(req, recipe.userId);
+        if(recipe!=null && recipe._id==requestedId) {
+            if(!isOwner) {
+                return res.redirect('/');
+            }
             res.render('./admin/edit-recipe', {
-                dish: result
+                dish: recipe,
             });
         }
         else {
@@ -30,8 +35,12 @@ exports.getEditRecipe = (req, res, next) => {
 
 exports.postEditRecipe = (req, res, next) => {
     const editedId = req.params.recipeId;
-    Recipe.queryRecipeById(editedId, (result) => {
-        if(result._id==editedId) {
+    Recipe.queryRecipeById(editedId, (recipe) => {
+        const isOwner = isRecipeOwner(req, recipe.userId);
+        if(recipe._id==editedId) {
+            if(!isOwner) {
+                return res.redirect('/');
+            }
             const editedDish = new Recipe(req.body.name, req.body.description, req.body.imageUrl);
             editedDish.update(editedId);
             res.redirect('/');
@@ -47,18 +56,18 @@ exports.getHome = (req, res, next) => {
     Recipe.fetchAllMongo((featuredRecipes) => {
         res.render('recipes', {
             dishes: featuredRecipes,
-            //isAuthenticated: req.session.isAuthenticated
         });
     }, 4);
 };
 
 exports.getRecipeDetail = (req, res, next) => {
     const requestedId = req.params.recipeId;
-    Recipe.queryRecipeById(requestedId, (result) => {
-        if(result._id==requestedId) {
+    Recipe.queryRecipeById(requestedId, (recipe) => {
+        if(recipe._id==requestedId) {
+            const isOwner = isRecipeOwner(req, recipe.userId);
             res.render('recipe-detail', {
-                dish: result,
-                //isAuthenticated: req.session.isAuthenticated
+                dish: recipe,
+                isOwner: isOwner
             });
         }
         else {
