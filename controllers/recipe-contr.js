@@ -69,7 +69,7 @@ exports.getRecipeDetail = (req, res, next) => {
                 const isOwner = isRecipeOwner(req, recipe.userId);
                 res.render('recipe-detail', {
                     dish: recipe,
-                    ingredients: ingredients,
+                    ingredients: ingredients.ingredients,
                     isOwner: isOwner
                 });
             });

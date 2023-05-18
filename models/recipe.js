@@ -50,7 +50,7 @@ exports.RecipeName = class RecipeName {
                 // Define collection we should access recipeNames from, use projection to modify what fields are returned,
                 // define cursor that will receive the returned documents, limit to no of recipes required for homepage
                 // 'featured' section, print output to console as a test
-                const projection = {_id: 1, recipeID: 1, name: 1, description: 1}
+                const projection = {_id: 1, name: 1, description: 1, imageUrl: 1}
                 const recipeNamesCursor = await collection.find().project(projection).limit(itemLimit);
                 await recipeNamesCursor.forEach(doc => {allRecipes.push(doc)});
                 await recipeNamesCursor.close();
@@ -64,13 +64,14 @@ exports.RecipeName = class RecipeName {
     }
 
     static queryRecipeById(id, callback) {
-        /**const options = {
-            projection: {_id: 1, recipeID: 1, name: 1, description: 1, imgName: 1}
-        };**/
+        const options = {
+            projection: {_id: 1, name: 1, description: 1, imageUrl: 1, userId: 1}
+        };
         const db = getDb();
         const collection = db.collection('recipeNames');
-        collection.findOne({ _id: new ObjectId(id) })
+        collection.findOne({ _id: new ObjectId(id)}, options)
             .then(result => {
+                console.log(result);
                 callback(result);
             })
             .catch(err => console.log(err));
@@ -107,7 +108,6 @@ exports.RecipeIngredients = class RecipeIngredients {
         const collection = db.collection('recipeNames');
         collection.findOne({_id: new ObjectId(id)}, options)
             .then(result => {
-                console.log(result);
                 callback(result);
             })
             .catch(err => console.log(err));

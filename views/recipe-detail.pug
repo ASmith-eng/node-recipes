@@ -23,7 +23,7 @@ block content
                 p 35mins
             p Dynamic Description goes here 
         section.ingredients 
-            h2 Ingredients 
-            ul 
-                li An example ingredient 
-                li Another example ingredient     
+            h2 Ingredients
+            ul
+                each ingredient in ingredients 
+                    li #{ingredient.quantity}#{ingredient.unit} #{ingredient.name}    
