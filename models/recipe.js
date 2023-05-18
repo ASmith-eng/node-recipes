@@ -3,7 +3,7 @@ const getDb = require('../utils/database').getDb;
 
 const ObjectId = mongodb.ObjectId;
 
-module.exports = class Recipe {
+exports.RecipeName = class RecipeName {
     constructor(name, description, imageUrl, userId, _id) {
         this.name = name;
         this.description = description;
@@ -38,9 +38,7 @@ module.exports = class Recipe {
             .then(result => {
                 console.log(result);
             })
-            .catch(err => {
-            console.log(err);
-        });
+            .catch(err => console.log(err));
     }
 
     static fetchAllMongo(callback, itemLimit=100) {
@@ -75,8 +73,43 @@ module.exports = class Recipe {
             .then(result => {
                 callback(result);
             })
-            .catch(err => {
-                console.log(err);
-            });
+            .catch(err => console.log(err));
+    }
+}
+
+exports.RecipeIngredients = class RecipeIngredients {
+    constructor(ingredients, _id) {
+        this.ingredients = ingredients;
+        this._id = _id ? new mongodb.ObjectId(_id) : null;
+    }
+
+    save(id) {
+        const saveFields = {ingredients: this.ingredients}
+        const db = getDb();
+        const collection = db.collection('recipeNames');
+        collection.updateOne(
+            {_id: new ObjectId(id)},
+            {
+                $set: saveFields
+            }
+        )
+            .then(result => {
+                console.log(result);
+            })
+            .catch(err => console.log(err));
+    }
+
+    static queryIngredientsById(id, callback) {
+        const options = {
+            projection: {_id: 1, ingredients: 1}
+        }
+        const db = getDb();
+        const collection = db.collection('recipeNames');
+        collection.findOne({_id: new ObjectId(id)}, options)
+            .then(result => {
+                console.log(result);
+                callback(result);
+            })
+            .catch(err => console.log(err));
     }
 }

@@ -1,4 +1,5 @@
-const Recipe = require('../models/recipe');
+const RecipeName = require('../models/recipe').RecipeName;
+const Ingredients = require('../models/recipe').RecipeIngredients;
 const isRecipeOwner = require('../utils/isRecipeOwner');
 
 /** Admin **/
@@ -10,14 +11,14 @@ exports.postAddRecipe = (req, res, nex) => {
     const name = req.body.name;
     const description = req.body.description;
     const imageUrl = req.body.imageUrl;
-    const recipe = new Recipe(name, description, imageUrl, req.user._id);
+    const recipe = new RecipeName(name, description, imageUrl, req.user._id);
     recipe.save();
     res.redirect('/');
 };
 
 exports.getEditRecipe = (req, res, next) => {
     const requestedId = req.params.recipeId;
-    Recipe.queryRecipeById((requestedId), (recipe) => {
+    RecipeName.queryRecipeById((requestedId), (recipe) => {
         const isOwner = isRecipeOwner(req, recipe.userId);
         if(recipe!=null && recipe._id==requestedId) {
             if(!isOwner) {
@@ -35,13 +36,13 @@ exports.getEditRecipe = (req, res, next) => {
 
 exports.postEditRecipe = (req, res, next) => {
     const editedId = req.params.recipeId;
-    Recipe.queryRecipeById(editedId, (recipe) => {
+    RecipeName.queryRecipeById(editedId, (recipe) => {
         const isOwner = isRecipeOwner(req, recipe.userId);
         if(recipe._id==editedId) {
             if(!isOwner) {
                 return res.redirect('/');
             }
-            const editedDish = new Recipe(req.body.name, req.body.description, req.body.imageUrl);
+            const editedDish = new RecipeName(req.body.name, req.body.description, req.body.imageUrl);
             editedDish.update(editedId);
             res.redirect('/');
         }
@@ -53,7 +54,7 @@ exports.postEditRecipe = (req, res, next) => {
 
 /** User       **/
 exports.getHome = (req, res, next) => {
-    Recipe.fetchAllMongo((featuredRecipes) => {
+    RecipeName.fetchAllMongo((featuredRecipes) => {
         res.render('recipes', {
             dishes: featuredRecipes,
         });
@@ -62,12 +63,15 @@ exports.getHome = (req, res, next) => {
 
 exports.getRecipeDetail = (req, res, next) => {
     const requestedId = req.params.recipeId;
-    Recipe.queryRecipeById(requestedId, (recipe) => {
+    RecipeName.queryRecipeById(requestedId, (recipe) => {
         if(recipe._id==requestedId) {
-            const isOwner = isRecipeOwner(req, recipe.userId);
-            res.render('recipe-detail', {
-                dish: recipe,
-                isOwner: isOwner
+            Ingredients.queryIngredientsById(requestedId, (ingredients) => {
+                const isOwner = isRecipeOwner(req, recipe.userId);
+                res.render('recipe-detail', {
+                    dish: recipe,
+                    ingredients: ingredients,
+                    isOwner: isOwner
+                });
             });
         }
         else {
@@ -77,7 +81,7 @@ exports.getRecipeDetail = (req, res, next) => {
 };
 
 exports.getRecipeList = (req, res, next) => {
-    Recipe.fetchAllMongo((allRecipes) => {
+    RecipeName.fetchAllMongo((allRecipes) => {
         res.render('./recipe-list', {
             dishes: allRecipes
         });
