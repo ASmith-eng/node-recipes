@@ -25,5 +25,6 @@ block content
         section.ingredients 
             h2 Ingredients
             ul
-                each ingredient in ingredients 
-                    li #{ingredient.quantity}#{ingredient.unit} #{ingredient.name}    
+                if ingredients
+                    each ingredient in ingredients 
+                        li #{ingredient.quantity}#{ingredient.unit} #{ingredient.name}

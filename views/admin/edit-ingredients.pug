@@ -16,18 +16,20 @@ block content
     main 
         section.heading 
             h1 Editing #{dish.name} Ingredients
-            a.link-button(href='/recipes/'+dish.recipeID) Cancel 
+            a.link-button(href='/recipes/'+dish.recipeId) Cancel 
         section.edit-form
             form.ingredients(action='/admin/edit-ingredients/'+dish._id, method="POST")
-                .ingredient
-                    .name
-                        label(for="name") Name
-                        input#ingname-input(type="text", name="name")
-                    .quantity 
-                        label(for="quantity") Quantity
-                        input#quantity-input(type="number", name="quantity", min="0")
-                    .unit
-                        label(for="unit") Measurement unit
-                        input#unit-input(type="text", name="unit")
+                if ingredients
+                    each ingredient in ingredients
+                        .ingredient
+                            .name
+                                label(for="name") Name
+                                input#ingname-input(type="text", name="name", value=ingredient.name)
+                            .quantity 
+                                label(for="quantity") Quantity
+                                input#quantity-input(type="number", name="quantity", min="0", value=ingredient.quantity)
+                            .unit
+                                label(for="unit") Measurement unit
+                                input#unit-input(type="text", name="unit", value=ingredient.unit)
                 button(type="submit") Add ingredients
                 input(type="hidden", name="CSRFToken", value=csrfToken)

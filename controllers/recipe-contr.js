@@ -64,7 +64,7 @@ exports.getEditIngredients = (req, res, next) => {
                 }
                 res.render('./admin/edit-ingredients', {
                     dish: recipe,
-                    ingredients: ingredients
+                    ingredients: ingredients.ingredients
                 });
             });
         }
