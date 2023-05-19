@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.get('/add-recipe', requiresAuth, recipesController.getAddRecipe);
 router.get('/edit-recipe/:recipeId', requiresAuth, recipesController.getEditRecipe);
+router.get('/edit-ingredients/:recipeId', requiresAuth, recipesController.getEditIngredients);
 
 router.post('/add-recipe', requiresAuth, recipesController.postAddRecipe);
 router.post('/edit-recipe/:recipeId', requiresAuth, recipesController.postEditRecipe);

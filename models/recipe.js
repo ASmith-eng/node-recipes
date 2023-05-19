@@ -12,12 +12,12 @@ exports.RecipeName = class RecipeName {
         this._id = _id ? new mongodb.ObjectId(_id) : null;
     }
 
-    save() {
+    save(callback) {
         const db = getDb();
         const collection = db.collection('recipeNames');
         collection.insertOne(this)
             .then(result => {
-                console.log(result);
+                callback(result);
             })
             .catch(err => {
             console.log(err);
@@ -71,7 +71,6 @@ exports.RecipeName = class RecipeName {
         const collection = db.collection('recipeNames');
         collection.findOne({ _id: new ObjectId(id)}, options)
             .then(result => {
-                console.log(result);
                 callback(result);
             })
             .catch(err => console.log(err));

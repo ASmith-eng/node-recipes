@@ -1,0 +1,33 @@
+extends ../layouts/main-layout.pug
+
+block title 
+    title Editing-#{dish.name}
+
+block styles
+    link(rel="stylesheet", href="/styles/main.css")
+    link(rel="stylesheet", href="/styles/detail.css")
+    link(rel="stylesheet", href="/styles/form.css")
+
+block additional-nav-links 
+    li 
+        a(href="/admin/add-recipe") Add Recipe 
+
+block content 
+    main 
+        section.heading 
+            h1 Editing #{dish.name} Ingredients
+            a.link-button(href='/recipes/'+dish.recipeID) Cancel 
+        section.edit-form
+            form.ingredients(action='/admin/edit-ingredients/'+dish._id, method="POST")
+                .ingredient
+                    .name
+                        label(for="name") Name
+                        input#ingname-input(type="text", name="name")
+                    .quantity 
+                        label(for="quantity") Quantity
+                        input#quantity-input(type="number", name="quantity", min="0")
+                    .unit
+                        label(for="unit") Measurement unit
+                        input#unit-input(type="text", name="unit")
+                button(type="submit") Add ingredients
+                input(type="hidden", name="CSRFToken", value=csrfToken)

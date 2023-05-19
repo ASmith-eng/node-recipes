@@ -12,8 +12,9 @@ exports.postAddRecipe = (req, res, nex) => {
     const description = req.body.description;
     const imageUrl = req.body.imageUrl;
     const recipe = new RecipeName(name, description, imageUrl, req.user._id);
-    recipe.save();
-    res.redirect('/');
+    recipe.save((result => {
+        res.redirect('/admin/edit-ingredients/'+result.insertedId);
+    }));
 };
 
 exports.getEditRecipe = (req, res, next) => {
@@ -45,6 +46,27 @@ exports.postEditRecipe = (req, res, next) => {
             const editedDish = new RecipeName(req.body.name, req.body.description, req.body.imageUrl);
             editedDish.update(editedId);
             res.redirect('/');
+        }
+        else {
+            res.status(404).render('page-not-found');
+        }
+    });
+};
+
+exports.getEditIngredients = (req, res, next) => {
+    const requestedId = req.params.recipeId;
+    RecipeName.queryRecipeById((requestedId), (recipe) => {
+        if(recipe!=null && recipe._id==requestedId) {
+            Ingredients.queryIngredientsById(requestedId, (ingredients) => {
+                const isOwner = isRecipeOwner(req, recipe.userId);
+                if(!isOwner) {
+                    return res.redirect('/');
+                }
+                res.render('./admin/edit-ingredients', {
+                    dish: recipe,
+                    ingredients: ingredients
+                });
+            });
         }
         else {
             res.status(404).render('page-not-found');
