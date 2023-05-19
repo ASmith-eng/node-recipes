@@ -8,28 +8,33 @@ block styles
     link(rel="stylesheet", href="/styles/detail.css")
     link(rel="stylesheet", href="/styles/form.css")
 
+block scripts
+    script(src="/scripts/form.js", defer)
+
 block additional-nav-links 
     li 
         a(href="/admin/add-recipe") Add Recipe 
 
 block content 
-    main 
+    main
         section.heading 
             h1 Editing #{dish.name} Ingredients
             a.link-button(href='/recipes/'+dish.recipeId) Cancel 
         section.edit-form
             form.ingredients(action='/admin/edit-ingredients/'+dish._id, method="POST")
-                if ingredients
-                    each ingredient in ingredients
-                        .ingredient
-                            .name
-                                label(for="name") Name
-                                input#ingname-input(type="text", name="name", value=ingredient.name)
-                            .quantity 
-                                label(for="quantity") Quantity
-                                input#quantity-input(type="number", name="quantity", min="0", value=ingredient.quantity)
-                            .unit
-                                label(for="unit") Measurement unit
-                                input#unit-input(type="text", name="unit", value=ingredient.unit)
+                #field-container
+                    if ingredients
+                        each ingredient, index in ingredients
+                            .ingredient
+                                .name
+                                    label(for="name") Name
+                                    input#ingname-input(type="text", name="ingredient["+index+"]name", value=ingredient.name)
+                                .quantity 
+                                    label(for="quantity") Quantity
+                                    input#quantity-input(type="number", name="ingredient["+index+"]quantity", min="0", value=ingredient.quantity)
+                                .unit
+                                    label(for="unit") Measurement unit
+                                    input#unit-input(type="text", name="ingredient["+index+"]unit", value=ingredient.unit)
+                a#add-field(href="#") Add another ingredient
                 button(type="submit") Add ingredients
                 input(type="hidden", name="CSRFToken", value=csrfToken)

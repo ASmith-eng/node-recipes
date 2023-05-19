@@ -32,7 +32,8 @@
   },
   "nodemonConfig": {
     "ignore": [
-      "data/recipeNames.json"
+      "data/recipeNames.json",
+      "public/scripts/"
     ]
   }
 }
