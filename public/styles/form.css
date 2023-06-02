@@ -28,6 +28,38 @@
     justify-content: space-between;
 }
 
+#field-container {
+    margin: 40px auto;
+    width: 75%;
+    justify-self: center;
+}
+
+.ingredient {
+    margin: 16px 0 0 0;
+    padding: 14px 2%;
+    font-size: 1.1rem;
+    color: white;
+    background-color: #3e5534;
+    border-radius: 10px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+    gap: 4%;
+}
+
+.ingredient p {
+    margin: 0 auto 0 0;
+    padding: 10px 12px;
+    align-self: center;
+    justify-self: start;
+}
+
+.ingredient div {
+    width: 160px;
+}
+
 .step-name,
 .step-image {
     width: 35%;
@@ -37,11 +69,27 @@
     width: 60%;
 }
 
-form label {
-    width: 60%;
+label {
     margin: 4px 0;
-    font-size: 1.1rem;
+}
+
+.name-description label {
+    width: 60%;
     display: inline-block;
+}
+
+.ingredients label {
+    display: block;
+}
+
+.options {
+    width: 75%;
+    margin:40px auto;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    align-items: space-between;
+    justify-self: center;
 }
 
 form button {
@@ -61,11 +109,27 @@ form button:hover {
     background-color: #FFF1BD;
 }
 
+.options button {
+    margin: 0 0 0 auto;
+}
+
+form a {
+    padding: 6px 8px;
+    font-size: 1.1rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    transition-duration: 0.2s;
+}
+
+form a:hover {
+    background-color: #3e5534;
+}
+
 .name-description input,
 .name-description textarea {
     width: 80%;
     padding: 10px;
-    font-size: 0.9rem;
     box-sizing: border-box;
     border: 1px solid bisque;
     border-radius: 2px;
@@ -77,8 +141,14 @@ form button:hover {
     resize: none;
 }
 
-#dish-input,
-#description-input,
-#image-input {
+.ingredients input {
+    width: 90%;
+}
+
+input {
+    padding: 6px;
     font-family: sans-serif;
+    font-size: 0.9rem;
+    border: 1px solid black;
+    border-radius: 2px;
 }

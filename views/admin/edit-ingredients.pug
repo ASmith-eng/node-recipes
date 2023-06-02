@@ -22,10 +22,11 @@ block content
             a.link-button(href='/recipes/'+dish.recipeId) Cancel 
         section.edit-form
             form.ingredients(action='/admin/edit-ingredients/'+dish._id, method="POST")
-                #field-container
+                #field-container(data-ingtotal=Object.keys(ingredients).length)
                     if ingredients
                         each ingredient, index in ingredients
                             .ingredient
+                                p Ingredient #{+index+1}
                                 .name
                                     label(for="name") Name
                                     input#ingname-input(type="text", name="ingredient["+index+"]name", value=ingredient.name)
@@ -35,6 +36,7 @@ block content
                                 .unit
                                     label(for="unit") Measurement unit
                                     input#unit-input(type="text", name="ingredient["+index+"]unit", value=ingredient.unit)
-                a#add-field(href="#") Add another ingredient
-                button(type="submit") Add ingredients
+                .options
+                    a#add-field(href="#") Add another ingredient
+                    button(type="submit") Save ingredients
                 input(type="hidden", name="CSRFToken", value=csrfToken)
