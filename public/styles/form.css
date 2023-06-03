@@ -105,8 +105,14 @@ form button {
 }
 
 form button:hover {
-    box-shadow: -5px 5px black;
+    box-shadow: -4px 4px black;
+    translate: 2px -1px;
     background-color: #FFF1BD;
+}
+
+form button:active {
+    box-shadow: none;
+    translate: -4px 3px;
 }
 
 .options button {

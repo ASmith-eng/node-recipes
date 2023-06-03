@@ -30,7 +30,8 @@ a {
 }
 
 .link-button:hover {
-    box-shadow: -5px 5px black;
+    box-shadow: -4px 4px black;
+    translate: 2px -1px;
     background-color: #A3DA8D;
 }
 

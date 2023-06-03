@@ -23,6 +23,7 @@ document.getElementById('add-field').onclick = function () {
     newIngredient.setAttribute('class', 'ingredient');
 
     container.appendChild(newIngredient);
-    window.scrollTo(0, scrollPos);
+    //window.scrollTo(0, scrollPos);
     index++;
+    return false;
 }
