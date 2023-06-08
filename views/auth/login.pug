@@ -10,8 +10,9 @@ block styles
 block content
     section.form-container
         .message
-            p Admin users can sign in here to add and update recipes!
-            p Please do not enter any sensitive info here
+            div
+                p Admin users can sign in here to add and update recipes!
+                p Please do not enter any sensitive info here
         .signin-card
             .signin-content
                 form.signin(action="/login", method="POST")
